@@ -1,73 +1,38 @@
-# React + TypeScript + Vite
+# Novel Client - 2025 Edition
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Vite](https://img.shields.io/badge/Vite--yellow?style=for-the-badge)
+![Typescript](https://img.shields.io/badge/Typescript--blue?style=for-the-badge)
+![React](https://img.shields.io/badge/React--blue?style=for-the-badge)
 
-Currently, two official plugins are available:
+**A lightweight novel-reading client built with Vite + React + TypeScript.**  
+This repository is the frontend reader UI that consumes the Novel scraping API (backend). It focuses on distraction-free reading, offline-friendly caching, accessibility, and a pleasant reading theme. The scraping backend is intentionally separate — see the server repository for scraping-specific details.\*\*
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key features (client)
 
-## React Compiler
+- Clean, distraction-free reader UI for web novels (pagination, font sizing, line height).
+- Multiple reading themes (light / sepia / dark) and a novel-centered color palette.
+- Text-to-speech (TTS) integration hooks (uses browser TTS or external service).
+- Offline caching for recently-read chapters (IndexedDB / localForage — optional).
+- Bookmarks, reading progress, and chapter list UI.
+- Responsive layout: mobile-first and desktop-friendly.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tech stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Vite (dev server & build)
+- React (function components + hooks)
+- TypeScript
+- Tailwind / CSS modules (optional — adjust per project)
+- ESLint + Prettier (flat config recommended)
+- localForage / IndexedDB for optional offline caching
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Disclaimer and Purpose
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This project and all associated code and documentation are intended **solely for educational and study purposes**. It serves as a practical example of web scraping, API design, and data handling techniques. It is not intended for commercial use or deployment in production environments. The creators and contributors assume no liability for any misuse of the project or any damages resulting from its use. Users are expected to adhere to these guidelines and use the project responsibly.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Previous Version
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Previous Version remain accessible to read, with documentation available at: [p2-iproject-client](https://github.com/dzulfiqarzaky/p2-iproject-client).
