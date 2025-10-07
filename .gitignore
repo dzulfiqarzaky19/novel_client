@@ -1,0 +1,52 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node
+node_modules/
+
+# Build / output
+dist/
+dist-ssr/
+build/
+out/
+.vite/
+.cache/
+
+# Vite / editor extras
+vite.svg
+vite-env.d.ts
+
+# ESLint / TypeScript caches
+.eslintcache
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.local
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/*
+!.vscode/extensions.json       # allow sharing recommended extensions only
+.idea/
+
+# Visual Studio / Visual Studio Code common files
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs and misc
+logs/
