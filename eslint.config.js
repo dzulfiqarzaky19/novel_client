@@ -31,6 +31,7 @@ export default [
       'react-hooks',
       'prettier',
       '@typescript-eslint',
+      'boundaries',
     ],
 
     parser: '@typescript-eslint/parser',
@@ -46,6 +47,43 @@ export default [
         typescript: true,
         node: { moduleDirectory: ['src/', 'node_modules'] },
       },
+      'boundaries/include': ['src/**/*'],
+      'boundaries/elements': [
+        {
+          mode: 'full',
+          type: 'shared',
+          pattern: [
+            'src/assets/**',
+            'src/components/**',
+            'src/hooks/**',
+            'src/lib/**',
+            'src/utils/**',
+          ],
+        },
+        {
+          mode: 'full',
+          type: 'feature',
+          capture: ['featureName'],
+          pattern: ['src/features/*/**/*'],
+        },
+        {
+          mode: 'full',
+          type: 'app',
+          capture: ['_', 'fileName'],
+          pattern: ['src/app/**/*'],
+        },
+        {
+          mode: 'full',
+          type: 'neverImport',
+          pattern: ['src/task/*'],
+        },
+        {
+          mode: 'full',
+          type: 'main',
+          capture: ['fileName'],
+          pattern: ['src/*'],
+        },
+      ],
     },
 
     rules: {
@@ -125,6 +163,37 @@ export default [
       'react/no-did-update-set-state': 'off',
       'react/require-default-props': 'off',
       'react/jsx-newline': ['error'],
+
+      // boundaries
+      'boundaries/no-unknown': ['error'],
+      'boundaries/no-unknown-files': ['error'],
+      'boundaries/element-types': [
+        'error',
+        {
+          default: 'disallow',
+          rules: [
+            {
+              from: ['shared'],
+              allow: ['shared'],
+            },
+            {
+              from: ['feature'],
+              allow: [
+                'shared',
+                ['feature', { featureName: '${from.featureName}' }],
+              ],
+            },
+            {
+              from: ['app', 'neverImport'],
+              allow: ['shared', 'feature'],
+            },
+            {
+              from: ['main'],
+              allow: [['main', { fileName: ['*.css', 'App.tsx'] }]],
+            },
+          ],
+        },
+      ],
     },
 
     overrides: [
