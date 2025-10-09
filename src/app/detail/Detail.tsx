@@ -1,6 +1,7 @@
 import { Link, useParams } from '@tanstack/react-router';
 
 import { useNovelDetail } from 'hooks/useDetail';
+import { formatDescriptionToParagraphs } from 'utils/formatDescription';
 
 import {
   Page,
@@ -23,11 +24,13 @@ import {
   ChapterList,
 } from './styles';
 
-// ============ Styles ============
-
 export const Detail = () => {
   const { novel } = useParams({ from: '/novel/$novel/' });
   const { data } = useNovelDetail(novel);
+
+  const formattedDescription = Array.isArray(data.description)
+    ? formatDescriptionToParagraphs(data.description.join('\n\n'))
+    : formatDescriptionToParagraphs(data.description);
 
   return (
     <Page>
@@ -143,7 +146,7 @@ export const Detail = () => {
 
             <div style={{ marginTop: 10 }}>
               <KVs>
-                <span>Also tagged:</span>
+                <span>TAG:</span>
 
                 <ChipRow>
                   {data.detail.tags.slice(0, 6).map((tag) => (
@@ -171,9 +174,9 @@ export const Detail = () => {
               <h2 id="description-heading">Description</h2>
 
               <p>
-                {Array.isArray(data.description)
-                  ? data.description.join('\n\n')
-                  : data.description}
+                {formattedDescription.map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
               </p>
             </SectionCard>
 
