@@ -1,46 +1,52 @@
-import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
+import js from '@eslint/js';
+import tanstackQueryPlugin from '@tanstack/eslint-plugin-query';
+import tseslint from '@typescript-eslint/eslint-plugin';
+import * as tsParser from '@typescript-eslint/parser';
+import boundariesPlugin from 'eslint-plugin-boundaries';
+import importPlugin from 'eslint-plugin-import';
+import noRelativeImportPathsPlugin from 'eslint-plugin-no-relative-import-paths';
+import prettierPlugin from 'eslint-plugin-prettier';
+import reactPlugin from 'eslint-plugin-react';
+import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import risxssPlugin from 'eslint-plugin-risxss';
+import globals from 'globals';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-});
-
 export default [
-  { ignores: ['dist', 'eslint.config.js'] },
-
-  ...compat.config({
-    extends: [
-      'plugin:react/recommended',
-      'plugin:react/jsx-runtime',
-      'plugin:react-hooks/recommended',
-      'prettier',
-    ],
-
-    env: { browser: true, es2021: true, 'jest/globals': true },
-
-    plugins: [
-      'import',
-      'no-relative-import-paths',
-      'risxss',
-      'react-hooks',
-      'prettier',
-      '@typescript-eslint',
-      'boundaries',
-    ],
-
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
+  {
+    ignores: ['dist/**', 'node_modules/**'],
+  },
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    languageOptions: {
       ecmaVersion: 2021,
       sourceType: 'module',
-      ecmaFeatures: { jsx: true },
+      parser: tsParser,
+      parserOptions: {
+        ecmaFeatures: { jsx: true },
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.es2021,
+        ...globals.jest,
+      },
     },
-
+    plugins: {
+      '@typescript-eslint': tseslint,
+      react: reactPlugin,
+      'react-hooks': reactHooksPlugin,
+      '@tanstack/query': tanstackQueryPlugin,
+      boundaries: boundariesPlugin,
+      import: importPlugin,
+      'no-relative-import-paths': noRelativeImportPathsPlugin,
+      risxss: risxssPlugin,
+      prettier: prettierPlugin,
+    },
     settings: {
       react: { version: 'detect' },
       'import/resolver': {
@@ -56,9 +62,14 @@ export default [
             'src/assets/**',
             'src/components/**',
             'src/hooks/**',
-            'src/lib/**',
+            'src/libs/**',
             'src/utils/**',
           ],
+        },
+        {
+          mode: 'full',
+          type: 'routes',
+          pattern: ['src/routes/**/*'],
         },
         {
           mode: 'full',
@@ -72,6 +83,7 @@ export default [
           capture: ['_', 'fileName'],
           pattern: ['src/app/**/*'],
         },
+
         {
           mode: 'full',
           type: 'neverImport',
@@ -85,10 +97,31 @@ export default [
         },
       ],
     },
-
     rules: {
+      ...js.configs.recommended.rules,
+      'no-console': ['warn', { allow: ['error', 'warn'] }],
+      quotes: ['error', 'single', { avoidEscape: true }],
+      'no-underscore-dangle': ['warn', { allowAfterThis: true }],
+      'padding-line-between-statements': [
+        'error',
+        { blankLine: 'always', prev: '*', next: 'return' },
+        { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+        {
+          blankLine: 'any',
+          prev: ['const', 'let', 'var'],
+          next: ['const', 'let', 'var'],
+        },
+        { blankLine: 'always', prev: 'multiline-const', next: '*' },
+        { blankLine: 'always', prev: '*', next: 'multiline-const' },
+        { blankLine: 'always', prev: '*', next: 'expression' },
+        { blankLine: 'always', prev: 'expression', next: '*' },
+        { blankLine: 'always', prev: '*', next: 'block-like' },
+        { blankLine: 'always', prev: 'block-like', next: '*' },
+      ],
+
+      // Import rules
       'import/prefer-default-export': 'off',
-      'import/no-extraneous-dependencies': ['off'],
+      'import/no-extraneous-dependencies': 'off',
       'import/order': [
         'warn',
         {
@@ -106,50 +139,14 @@ export default [
           alphabetize: { order: 'asc', caseInsensitive: true },
         },
       ],
-      'no-console': ['warn', { allow: ['error', 'warn'] }],
-      'risxss/catch-potential-xss-react': 'error',
-      'react/no-danger': 'off',
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_',
-        },
-      ],
-      'padding-line-between-statements': [
-        'error',
-        { blankLine: 'always', prev: '*', next: 'return' },
-        { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
-        {
-          blankLine: 'any',
-          prev: ['const', 'let', 'var'],
-          next: ['const', 'let', 'var'],
-        },
-        { blankLine: 'always', prev: 'multiline-const', next: '*' },
-        { blankLine: 'always', prev: '*', next: 'multiline-const' },
-        { blankLine: 'always', prev: '*', next: 'expression' },
-        { blankLine: 'always', prev: 'expression', next: '*' },
-        { blankLine: 'always', prev: '*', next: 'block-like' },
-        { blankLine: 'always', prev: 'block-like', next: '*' },
-      ],
+
+      // React rules
       'react/jsx-key': 'error',
-      'no-relative-import-paths/no-relative-import-paths': [
-        'warn',
-        { allowSameFolder: true, rootDir: 'src', allowedDepth: 2 },
-      ],
-      'no-use-before-define': 'off',
-      '@typescript-eslint/no-use-before-define': 'error',
-      '@typescript-eslint/default-param-last': 'off',
-      '@typescript-eslint/naming-convention': [
-        'warn',
-        {
-          selector: ['variableLike'],
-          format: ['camelCase', 'PascalCase', 'UPPER_CASE', 'snake_case'],
-          leadingUnderscore: 'allow',
-          trailingUnderscore: 'forbid',
-        },
-      ],
+      'react/jsx-props-no-spreading': 'off',
+      'react/no-did-update-set-state': 'off',
+      'react/require-default-props': 'off',
+      'react/jsx-newline': ['error'],
+      'react/no-danger': 'off',
       'react/function-component-definition': [
         'warn',
         {
@@ -157,14 +154,15 @@ export default [
           unnamedComponents: 'arrow-function',
         },
       ],
-      quotes: ['error', 'single', { avoidEscape: true }],
-      'no-underscore-dangle': ['warn', { allowAfterThis: true }],
-      'react/jsx-props-no-spreading': 'off',
-      'react/no-did-update-set-state': 'off',
-      'react/require-default-props': 'off',
-      'react/jsx-newline': ['error'],
 
-      // boundaries
+      // Plugin rules
+      'risxss/catch-potential-xss-react': 'error',
+      'no-relative-import-paths/no-relative-import-paths': [
+        'warn',
+        { allowSameFolder: true, rootDir: 'src', allowedDepth: 2 },
+      ],
+
+      // Boundaries rules
       'boundaries/no-unknown': ['error'],
       'boundaries/no-unknown-files': ['error'],
       'boundaries/element-types': [
@@ -177,6 +175,10 @@ export default [
               allow: ['shared'],
             },
             {
+              from: ['routes'],
+              allow: ['app', 'shared'],
+            },
+            {
               from: ['feature'],
               allow: [
                 'shared',
@@ -184,45 +186,77 @@ export default [
               ],
             },
             {
-              from: ['app', 'neverImport'],
-              allow: ['shared', 'feature'],
+              from: ['app'],
+              allow: ['app', 'feature', 'shared'],
             },
             {
               from: ['main'],
-              allow: [['main', { fileName: ['*.css', 'App.tsx'] }]],
+              allow: [['main'], ['app', { fileName: 'App.tsx' }]],
             },
           ],
         },
       ],
+
+      // TypeScript rules
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
+      '@typescript-eslint/no-use-before-define': 'error',
+      '@typescript-eslint/default-param-last': 'off',
+      '@typescript-eslint/naming-convention': [
+        'warn',
+        {
+          selector: ['variableLike'],
+          format: ['camelCase', 'PascalCase', 'UPPER_CASE', 'snake_case'],
+          leadingUnderscore: 'allow',
+          trailingUnderscore: 'forbid',
+        },
+      ],
+
+      // prettier
+      'prettier/prettier': 'error',
     },
-
-    overrides: [
-      {
-        files: ['**/*.ts', '**/*.tsx'],
-        extends: [
-          'plugin:@typescript-eslint/recommended-type-checked',
-          'plugin:@typescript-eslint/stylistic-type-checked',
-        ],
-        parser: '@typescript-eslint/parser',
-        parserOptions: {
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: ['./tsconfig.eslint.json'],
+        tsconfigRootDir: __dirname,
+        ecmaVersion: 2021,
+        sourceType: 'module',
+      },
+    },
+    settings: {
+      'import/resolver': {
+        typescript: {
           project: ['./tsconfig.eslint.json'],
-          tsconfigRootDir: __dirname,
-          ecmaVersion: 2021,
-          sourceType: 'module',
-          ecmaFeatures: { jsx: true },
-        },
-        rules: {
-          '@typescript-eslint/default-param-last': 'error',
         },
       },
-
-      {
-        files: ['**/store/**/reducers.ts', '**/store/**/reducers.js'],
-        rules: {
-          'default-param-last': 'off',
-          '@typescript-eslint/default-param-last': 'off',
-        },
-      },
-    ],
-  }),
+    },
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'error',
+      '@typescript-eslint/no-unsafe-call': 'error',
+      '@typescript-eslint/no-unsafe-member-access': 'error',
+      '@typescript-eslint/no-unsafe-return': 'error',
+      '@typescript-eslint/default-param-last': 'error',
+    },
+  },
+  {
+    files: ['**/*.config.{js,ts}', 'eslint.config.js'],
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/naming-convention': 'off',
+      'no-underscore-dangle': 'off',
+    },
+  },
 ];
