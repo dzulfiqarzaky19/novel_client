@@ -5,6 +5,8 @@ import {
 } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
+import { NotFoundPage } from 'app/notFound/NotFound';
+
 import type { QueryClient } from '@tanstack/react-query';
 
 export interface RouterContext {
@@ -20,13 +22,6 @@ const RootLayout = () => (
       >
         Home
       </Link>
-
-      <Link
-        to="/detail"
-        className="[&.active]:font-bold"
-      >
-        Detail
-      </Link>
     </div>
 
     <hr />
@@ -39,4 +34,5 @@ const RootLayout = () => (
 
 export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootLayout,
+  notFoundComponent: NotFoundPage,
 });
