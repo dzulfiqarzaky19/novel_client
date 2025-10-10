@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { useHomeCompleted } from 'hooks/useHome';
@@ -24,19 +25,17 @@ import {
 interface ISlideProps {
   title: string;
   subtitle: string;
-  href: string;
+  slug: string;
   cover: string;
 }
 
 interface ICompletedSectionProps {
   intervalMs?: number;
-  onCTA?: (slide: ISlideProps) => void;
   ctaLabel?: string;
 }
 
 export const CompletedSection = ({
   intervalMs = 10000,
-  onCTA,
   ctaLabel = 'Read now',
 }: ICompletedSectionProps) => {
   const { data } = useHomeCompleted();
@@ -48,7 +47,7 @@ export const CompletedSection = ({
         .map((i) => ({
           title: i.title,
           subtitle: i.chapterInfo,
-          href: i.absoluteUrl,
+          slug: i.slug,
           cover: i.coverAbsoluteUrl,
         })),
     [data],
@@ -58,7 +57,7 @@ export const CompletedSection = ({
   const [progress, setProgress] = useState(0);
   const timerRef = useRef<number | null>(null);
   const lastTickRef = useRef<number | null>(null);
-  const pausedRef = useRef(false);
+  const pausedRef = useRef(false); // kept for logic, but no longer toggled by hover
 
   const go = (dir: 1 | -1) => {
     setIndex((i) => (i + dir + slides.length) % slides.length);
@@ -98,7 +97,6 @@ export const CompletedSection = ({
         const next = p + dt / intervalMs;
 
         if (next >= 1) {
-          // advance slide
           setIndex((i) => (i + 1) % slides.length);
 
           return 0;
@@ -129,11 +127,7 @@ export const CompletedSection = ({
   const active = slides[index];
 
   return (
-    <Section
-      bg={active.cover}
-      onMouseEnter={() => (pausedRef.current = true)}
-      onMouseLeave={() => (pausedRef.current = false)}
-    >
+    <Section bg={active.cover}>
       <Frame>
         <ArrowArea>
           <Ghost
@@ -166,20 +160,12 @@ export const CompletedSection = ({
             )}
 
             <Actions>
-              <CTA
-                href={active.href}
-                onClick={(e) => {
-                  if (onCTA) {
-                    e.preventDefault();
-
-                    onCTA(active);
-                  }
-                }}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                to="/novel/$novel"
+                params={{ novel: active.slug }}
               >
-                {ctaLabel}
-              </CTA>
+                <CTA>{ctaLabel}</CTA>
+              </Link>
             </Actions>
           </Copy>
         </Hero>

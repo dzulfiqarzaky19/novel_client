@@ -7,6 +7,7 @@ export const Section = styled.section<{ bg?: string | null }>`
   overflow: clip;
   border-radius: 16px;
   background: #0b0f14;
+
   &::before {
     content: '';
     position: absolute;
@@ -16,12 +17,14 @@ export const Section = styled.section<{ bg?: string | null }>`
     filter: blur(28px) saturate(1.2) brightness(0.4);
     transform: scale(1.08);
     opacity: 0.9;
+    pointer-events: none; /* allow clicks to pass through */
   }
   &::after {
     content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+    pointer-events: none; /* allow clicks to pass through */
   }
 `;
 
@@ -50,8 +53,7 @@ export const ArrowArea = styled.div`
     position: absolute;
     inset: 0;
     width: ${HERO_ARROW_COL};
-    pointer-events: none;
-
+    /* pointer-events removed so buttons remain clickable on mobile */
     &:first-of-type {
       left: 6px;
     }
@@ -131,7 +133,8 @@ export const Actions = styled.div`
   margin-top: 4px;
 `;
 
-export const CTA = styled.a`
+/* CHANGED from styled.a to styled.span to avoid nested anchors; visuals unchanged */
+export const CTA = styled.span`
   display: inline-block;
   background: #fff;
   color: #0b0f14;
@@ -140,6 +143,7 @@ export const CTA = styled.a`
   font-weight: 800;
   text-decoration: none;
   transition: transform 120ms ease;
+  cursor: pointer;
   &:hover {
     transform: translateY(-1px);
   }
