@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router';
 import { useRef } from 'react';
 
 import { useHomeHot } from 'hooks/useHome';
@@ -53,24 +54,31 @@ export const HotSection = () => {
         <EdgeFadeLeft aria-hidden />
 
         <Carousel ref={scrollerRef}>
-          {data.map((n) => (
-            <Card
-              key={n.slug ?? n.title}
-              title={n.title}
-            >
-              <CoverWrapper>
-                <Cover
-                  src={n.coverAbsoluteUrl}
-                  alt={n.title}
-                  loading="lazy"
-                />
+          {data.map((novel) => {
+            if (!novel.slug) return null;
 
-                {n.hasLabel && <Pill aria-label="Hot">HOT</Pill>}
-              </CoverWrapper>
+            return (
+              <Link
+                to="/novel/$novel"
+                params={{ novel: novel.slug }}
+                key={novel.slug}
+              >
+                <Card title={novel.title}>
+                  <CoverWrapper>
+                    <Cover
+                      src={novel.coverAbsoluteUrl}
+                      alt={novel.title}
+                      loading="lazy"
+                    />
 
-              <Title>{n.title}</Title>
-            </Card>
-          ))}
+                    {novel.hasLabel && <Pill aria-label="Hot">HOT</Pill>}
+                  </CoverWrapper>
+
+                  <Title>{novel.title}</Title>
+                </Card>
+              </Link>
+            );
+          })}
         </Carousel>
 
         <EdgeFadeRight aria-hidden />
