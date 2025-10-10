@@ -2,6 +2,8 @@ import { createFileRoute } from '@tanstack/react-router';
 import z from 'zod';
 
 import { Chapter } from 'app/chapter/Chapter';
+import { ErrorPage } from 'app/error/Error';
+import { LoaderPage } from 'app/loader/Loader';
 import { chapterQuery } from 'hooks/useChapter';
 
 const Params = z.object({
@@ -18,6 +20,6 @@ export const Route = createFileRoute('/novel/$novel/$chapter')({
     return queryClient.ensureQueryData(chapterQuery(slug));
   },
   component: Chapter,
-  pendingComponent: () => <div>Loading...</div>,
-  errorComponent: () => <div>Error!</div>,
+  pendingComponent: LoaderPage,
+  errorComponent: ErrorPage,
 });

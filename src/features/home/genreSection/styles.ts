@@ -74,7 +74,7 @@ export const Row = styled.button`
   }
 `;
 
-export const Link = styled.a`
+export const LinkWrapper = styled.div`
   color: inherit;
   text-decoration: none;
 `;

@@ -259,4 +259,7 @@ export default [
       'no-underscore-dangle': 'off',
     },
   },
+  {
+    ignores: ['vite-env.d.ts'],
+  },
 ];

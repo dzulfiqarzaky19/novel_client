@@ -126,7 +126,7 @@ export const Chapter = () => {
             to="/novel/$novel"
             params={{ novel }}
           >
-            <Title>{novel}</Title>
+            <Title>{data.chapter.title}</Title>
           </Link>
 
           <SubTitle>{chapter}</SubTitle>

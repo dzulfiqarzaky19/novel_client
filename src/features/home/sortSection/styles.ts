@@ -71,10 +71,6 @@ export const Row = styled.button`
     scroll-behavior: auto;
   }
 `;
-export const Link = styled.a`
-  color: inherit;
-  text-decoration: none;
-`;
 
 export const Title = styled.strong`
   color: var(--text);

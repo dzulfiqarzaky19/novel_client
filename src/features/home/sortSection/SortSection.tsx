@@ -1,6 +1,8 @@
+import { Link } from '@tanstack/react-router';
+
 import { useHomeSorts } from 'hooks/useHome';
 
-import { Link, List, Row, Section, SectionHeader, Title } from './styles';
+import { List, Row, Section, SectionHeader, Title } from './styles';
 
 export const SortSection = () => {
   const { data } = useHomeSorts();
@@ -13,11 +15,18 @@ export const SortSection = () => {
         {data
           .filter((i) => i.text)
           .map((n) => (
-            <Row key={n.absoluteUrl}>
-              <Link href={n.absoluteUrl}>
+            <Link
+              key={n.absoluteUrl}
+              to="/$list/$listType"
+              params={{
+                list: n.path.split('/')[1],
+                listType: n.path.split('/')[2],
+              }}
+            >
+              <Row>
                 <Title>{n.text}</Title>
-              </Link>
-            </Row>
+              </Row>
+            </Link>
           ))}
       </List>
     </Section>
