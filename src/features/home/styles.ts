@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 export const Page = styled.main`
   max-width: 1400px;
   margin: 0 auto;
-  padding: clamp(10px, 2.5vw, 16px) clamp(12px, 3vw, 16px) clamp(24px, 4vw, 32px);
+  padding: clamp(10px, 2.5vw, 16px) clamp(12px, 3vw, 16px)
+    clamp(24px, 4vw, 32px);
   max-width: 100vw;
   overflow-x: clip;
 `;

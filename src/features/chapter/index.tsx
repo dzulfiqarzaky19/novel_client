@@ -40,8 +40,6 @@ export const Chapter = () => {
         readTime={readTime}
         content={formattedContent}
       />
-
-
     </Page>
   );
 };

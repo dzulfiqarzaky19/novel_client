@@ -158,7 +158,7 @@ export const ContentArea = styled.article`
   p {
     margin: 0 0 ${({ theme }) => theme.spacing[6]};
     text-align: justify;
-    
+
     &:last-child {
       margin-bottom: 0;
     }

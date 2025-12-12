@@ -56,7 +56,8 @@ export const RatingRow = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.spacing[2]};
   align-items: center;
-  margin: ${({ theme }) => theme.spacing[2]} 0 ${({ theme }) => theme.spacing[3]};
+  margin: ${({ theme }) => theme.spacing[2]} 0
+    ${({ theme }) => theme.spacing[3]};
   flex-wrap: wrap;
 `;
 
@@ -64,7 +65,7 @@ export const Pill = styled.span`
   display: inline-flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing[2]};
-  padding: ${({ theme}) => theme.spacing[2]} ${({ theme }) => theme.spacing[3]};
+  padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[3]};
   border-radius: ${({ theme }) => theme.borderRadius.full};
   background: transparent;
   border: 1px solid ${({ theme }) => theme.colors.text.primary};
@@ -75,7 +76,7 @@ export const Pill = styled.span`
   b {
     font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   }
-  
+
   small {
     color: ${({ theme }) => theme.colors.text.secondary};
     font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
@@ -85,7 +86,8 @@ export const Pill = styled.span`
 export const Meta = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing[2]};
-  margin: ${({ theme }) => theme.spacing[3]} 0 ${({ theme }) => theme.spacing[4]};
+  margin: ${({ theme }) => theme.spacing[3]} 0
+    ${({ theme }) => theme.spacing[4]};
 
   .row {
     display: flex;
@@ -143,7 +145,8 @@ export const CTA = styled.span`
 
   a {
     display: inline-flex;
-    padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[4]};
+    padding: ${({ theme }) => theme.spacing[2]}
+      ${({ theme }) => theme.spacing[4]};
     border-radius: ${({ theme }) => theme.borderRadius.lg};
     background: ${({ theme }) => theme.colors.component.buttonPrimary};
     color: ${({ theme }) => theme.colors.text.inverse};
@@ -160,7 +163,7 @@ export const CTA = styled.span`
     box-shadow: ${({ theme }) => theme.shadows.md};
     transform: translateY(-1px);
   }
-  
+
   a:active {
     opacity: 0.85;
     transform: translateY(0);
@@ -231,11 +234,13 @@ export const NovelCard = styled.span`
   }
 
   .body {
-    padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[3]} ${({ theme }) => theme.spacing[3]};
+    padding: ${({ theme }) => theme.spacing[2]}
+      ${({ theme }) => theme.spacing[3]} ${({ theme }) => theme.spacing[3]};
   }
 
   h4 {
-    margin: ${({ theme }) => theme.spacing[1]} 0 ${({ theme }) => theme.spacing[2]};
+    margin: ${({ theme }) => theme.spacing[1]} 0
+      ${({ theme }) => theme.spacing[2]};
     font-size: ${({ theme }) => theme.typography.fontSize.sm};
     line-height: ${({ theme }) => theme.typography.lineHeight.tight};
     color: ${({ theme }) => theme.colors.text.primary};
@@ -268,7 +273,8 @@ export const ChapterList = styled.div`
   a {
     color: ${({ theme }) => theme.colors.text.primary};
     text-decoration: none;
-    padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[3]};
+    padding: ${({ theme }) => theme.spacing[2]}
+      ${({ theme }) => theme.spacing[3]};
     border-radius: ${({ theme }) => theme.borderRadius.lg};
     border: 1px solid ${({ theme }) => theme.colors.border.default};
     background: ${({ theme }) => theme.colors.surface.card};

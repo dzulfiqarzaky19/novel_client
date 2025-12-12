@@ -22,8 +22,8 @@ export const LogoWrapper = styled(Link)`
 `;
 
 export const Logo = () => (
-    <LogoWrapper to="/">
-        <SquareLibrary />
-        NovelReader
-    </LogoWrapper>
+  <LogoWrapper to="/">
+    <SquareLibrary />
+    NovelReader
+  </LogoWrapper>
 );

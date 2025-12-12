@@ -2,8 +2,8 @@ import { Global, css } from '@emotion/react';
 import type { Theme } from './hooks/useThemeContext';
 
 export const GlobalStyles = () => (
-    <Global
-        styles={(theme: Theme) => css`
+  <Global
+    styles={(theme: Theme) => css`
       * {
         margin: 0;
         padding: 0;
@@ -28,7 +28,9 @@ export const GlobalStyles = () => (
         margin: 0;
         color: ${theme.colors.text.primary};
         background-color: ${theme.colors.surface.background};
-        transition: background-color ${theme.transitions.base}, color ${theme.transitions.base};
+        transition:
+          background-color ${theme.transitions.base},
+          color ${theme.transitions.base};
       }
 
       /* Typography */
@@ -213,5 +215,5 @@ export const GlobalStyles = () => (
         border-width: 0;
       }
     `}
-    />
+  />
 );

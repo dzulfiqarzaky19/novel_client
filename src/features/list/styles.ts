@@ -138,7 +138,7 @@ export const PageBtn = styled.button<{ active?: boolean }>`
   padding: 0 ${({ theme }) => theme.spacing[2]};
   border-radius: ${({ theme }) => theme.borderRadius.lg};
   border: 1px solid ${({ theme }) => theme.colors.border.default};
-  background: ${({ active, theme }) => 
+  background: ${({ active, theme }) =>
     active ? theme.colors.surface.cardHover : theme.colors.surface.card};
   color: ${({ theme }) => theme.colors.text.primary};
   font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};

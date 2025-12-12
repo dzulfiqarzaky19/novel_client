@@ -13,7 +13,8 @@ export const Section = styled.section<{ bg?: string | null }>`
     content: '';
     position: absolute;
     inset: 0;
-    background: ${({ bg }) => (bg ? `url(${bg}) center top / cover no-repeat` : 'none')};
+    background: ${({ bg }) =>
+      bg ? `url(${bg}) center top / cover no-repeat` : 'none'};
     filter: blur(60px) brightness(0.4) saturate(1.2);
     transform: scale(1.1);
     z-index: 0;
@@ -100,7 +101,8 @@ export const Hero = styled.div`
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
-    padding: ${({ theme }) => theme.spacing[8]} ${({ theme }) => theme.spacing[4]};
+    padding: ${({ theme }) => theme.spacing[8]}
+      ${({ theme }) => theme.spacing[4]};
   }
 `;
 

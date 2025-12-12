@@ -37,14 +37,14 @@ export const ArrowButton = styled.button`
   line-height: 1;
   color: ${({ theme }) => theme.colors.text.secondary};
   transition: all ${({ theme }) => theme.transitions.fast};
-  
+
   &:hover {
     background: ${({ theme }) => theme.colors.surface.cardHover};
     color: ${({ theme }) => theme.colors.text.primary};
     transform: none;
     box-shadow: none;
   }
-  
+
   &:focus-visible {
     outline: 2px solid ${({ theme }) => theme.colors.border.focus};
     outline-offset: 2px;
@@ -71,7 +71,7 @@ export const Carousel = styled.div`
   &::-webkit-scrollbar {
     height: 8px;
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background: ${({ theme }) => theme.colors.border.default};
     border-radius: ${({ theme }) => theme.borderRadius.sm};
@@ -99,7 +99,7 @@ export const Card = styled.button`
     transform: none;
     box-shadow: none;
   }
-  
+
   &:focus-visible {
     outline: 2px solid ${({ theme }) => theme.colors.border.focus};
     outline-offset: 2px;
@@ -142,13 +142,13 @@ export const Pill = styled.span`
     color: #fff;
     border: 1px solid #ca8a04;
   }
-  
+
   &.rank-2 {
     background: #94a3b8;
     color: #fff;
     border: 1px solid #64748b;
   }
-  
+
   &.rank-3 {
     background: #d97706;
     color: #fff;
@@ -175,11 +175,19 @@ export const EdgeFadeLeft = styled.div`
   bottom: 0;
   left: 0;
   width: 24px;
-  background: linear-gradient(90deg, ${({ theme }) => theme.colors.surface.background} 0%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.colors.surface.background} 0%,
+    transparent 100%
+  );
 `;
 
 export const EdgeFadeRight = styled(EdgeFadeLeft)`
   left: auto;
   right: 0;
-  background: linear-gradient(270deg, ${({ theme }) => theme.colors.surface.background} 0%, transparent 100%);
+  background: linear-gradient(
+    270deg,
+    ${({ theme }) => theme.colors.surface.background} 0%,
+    transparent 100%
+  );
 `;
