@@ -1,13 +1,11 @@
-import {
-  createRootRouteWithContext,
-  Link,
-  Outlet,
-} from '@tanstack/react-router';
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
 import { NotFoundPage } from 'components/notFound/NotFound';
 
 import type { QueryClient } from '@tanstack/react-query';
+import { Header } from 'components/header';
+import { Footer } from 'components/footer';
 
 export interface RouterContext {
   queryClient: QueryClient;
@@ -15,18 +13,11 @@ export interface RouterContext {
 
 const RootLayout = () => (
   <>
-    <div className="p-2 flex gap-2">
-      <Link
-        to="/"
-        className="[&.active]:font-bold"
-      >
-        Home
-      </Link>
-    </div>
-
-    <hr />
+    <Header />
 
     <Outlet />
+
+    <Footer />
 
     <TanStackRouterDevtools />
   </>
