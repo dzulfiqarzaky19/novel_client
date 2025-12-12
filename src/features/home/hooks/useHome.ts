@@ -1,7 +1,6 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 import { getHome } from '../api/homeApi';
 
-
 export const homeQuery = queryOptions({
   queryKey: ['home'] as const,
   queryFn: getHome,

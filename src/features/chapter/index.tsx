@@ -68,7 +68,7 @@ const Spacer = styled.div`
 
 const NavButton = styled(Link, {
   shouldForwardProp: (p) => p !== 'disabled',
-}) <{ disabled?: boolean }>`
+})<{ disabled?: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;

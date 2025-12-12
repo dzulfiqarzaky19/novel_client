@@ -86,7 +86,10 @@ export const CompletedSection = ({
     <Section bg={active.cover}>
       <Frame>
         <ArrowArea className="prev">
-          <Ghost onClick={() => go(-1)} aria-label="Previous">
+          <Ghost
+            onClick={() => go(-1)}
+            aria-label="Previous"
+          >
             ‹
           </Ghost>
         </ArrowArea>
@@ -94,9 +97,14 @@ export const CompletedSection = ({
         <Hero>
           <Visual>
             {active.cover ? (
-              <Cover src={active.cover} alt={active.title} />
+              <Cover
+                src={active.cover}
+                alt={active.title}
+              />
             ) : (
-              <Placeholder aria-label={active.title}>{active.title}</Placeholder>
+              <Placeholder aria-label={active.title}>
+                {active.title}
+              </Placeholder>
             )}
           </Visual>
 
@@ -113,13 +121,17 @@ export const CompletedSection = ({
             </Sub>
 
             <Description>
-              In a world where strength determines destiny, a young man rises from the ashes of betrayal.
-              With the blood of the ancient Dragon Emperor flowing through his veins, he challenges the heavens
-              and crushes all who stand in his way.
+              In a world where strength determines destiny, a young man rises
+              from the ashes of betrayal. With the blood of the ancient Dragon
+              Emperor flowing through his veins, he challenges the heavens and
+              crushes all who stand in his way.
             </Description>
 
             <Actions>
-              <Link to="/novel/$novel" params={{ novel: active.slug }}>
+              <Link
+                to="/novel/$novel"
+                params={{ novel: active.slug }}
+              >
                 <CTA primary>{ctaLabel}</CTA>
               </Link>
               <CTA>+ Add to Library</CTA>
@@ -128,13 +140,19 @@ export const CompletedSection = ({
         </Hero>
 
         <ArrowArea className="next">
-          <Ghost onClick={() => go(1)} aria-label="Next">
+          <Ghost
+            onClick={() => go(1)}
+            aria-label="Next"
+          >
             ›
           </Ghost>
         </ArrowArea>
       </Frame>
 
-      <ProgressBar role="tablist" aria-label="Slides">
+      <ProgressBar
+        role="tablist"
+        aria-label="Slides"
+      >
         {slides.map((s, i) => (
           <Dot
             key={s.title}

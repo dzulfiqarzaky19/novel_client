@@ -21,7 +21,7 @@ export const SectionHeader = styled.h2`
   font-family: 'Times New Roman', serif;
   border-bottom: 2px solid #e5e7eb;
   padding-bottom: 8px;
-  
+
   @media (prefers-color-scheme: dark) {
     border-color: #1f2937;
   }

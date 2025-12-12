@@ -54,13 +54,17 @@ export const ArrowArea = styled.div`
   display: grid;
   place-items: center;
   z-index: 10;
-  
+
   @media (max-width: 768px) {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    &.prev { left: 4px; }
-    &.next { right: 4px; }
+    &.prev {
+      left: 4px;
+    }
+    &.next {
+      right: 4px;
+    }
   }
 `;
 
@@ -103,7 +107,7 @@ export const Hero = styled.div`
 export const Visual = styled.div`
   position: relative;
   border-radius: 12px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
   line-height: 0;
 
   &::after {
@@ -158,7 +162,7 @@ export const Badge = styled.span`
   padding: 4px 8px;
   border-radius: 6px;
   letter-spacing: 0.05em;
-  
+
   &.rating {
     background: transparent;
     border: 1px solid #fbbf24;
@@ -175,7 +179,7 @@ export const Title = styled.h2`
   line-height: 1.1;
   color: #fff;
   margin: 0;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   font-family: 'Times New Roman', serif; /* Or keep sans if preferred */
 `;
 
@@ -222,19 +226,22 @@ export const CTA = styled.div<{ primary?: boolean }>`
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
-  
-  ${({ primary }) => primary ? `
+
+  ${({ primary }) =>
+    primary
+      ? `
     background: #3b82f6; /* Blue */
     color: #fff;
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
     &:hover { background: #2563eb; }
-  ` : `
+  `
+      : `
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.15);
     &:hover { background: rgba(255, 255, 255, 0.2); }
   `}
-  
+
   transition: all 0.2s ease;
 `;
 
@@ -257,7 +264,7 @@ export const Dot = styled.button`
   cursor: pointer;
   padding: 0;
   transition: all 0.2s;
-  
+
   &.active {
     width: 24px;
     border-radius: 4px;

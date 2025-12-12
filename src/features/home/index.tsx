@@ -7,21 +7,21 @@ import { SortSection } from 'features/home/components/sortSection/SortSection';
 import { ContentGrid, Page, Sidebar } from './styles';
 
 export const Home = () => {
-    return (
-        <Page>
-            <CompletedSection />
+  return (
+    <Page>
+      <CompletedSection />
 
-            <ContentGrid>
-                <LatestSection />
+      <ContentGrid>
+        <LatestSection />
 
-                <Sidebar>
-                    <GenreSection />
+        <Sidebar>
+          <GenreSection />
 
-                    <SortSection />
-                </Sidebar>
-            </ContentGrid>
+          <SortSection />
+        </Sidebar>
+      </ContentGrid>
 
-            <HotSection />
-        </Page>
-    );
+      <HotSection />
+    </Page>
+  );
 };

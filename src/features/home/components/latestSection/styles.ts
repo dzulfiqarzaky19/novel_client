@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Section = styled.section`
   margin: 0;
   /* Remove dedicated padding if grid handles it */
-  
+
   --text: #111;
   --muted: #6b7280;
   --line: #e5e7eb;
@@ -43,8 +43,10 @@ export const ViewAll = styled.a`
   color: #3b82f6;
   text-decoration: none;
   cursor: pointer;
-  
-  &:hover { text-decoration: underline; }
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const List = styled.div`
@@ -61,19 +63,19 @@ export const Row = styled.div`
   border-radius: 12px;
   background: var(--bg-hover); /* Card-like background for each item */
   /* Or transparent with border? Reference looks like white cards on light bg */
-  
+
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s;
-  
+
   cursor: pointer;
 
   &:hover {
     transform: translateY(-2px);
     background: color-mix(in oklab, var(--bg-hover), white 5%);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   }
-  
+
   @media (prefers-color-scheme: dark) {
     background: #111827;
     border: 1px solid var(--line);
