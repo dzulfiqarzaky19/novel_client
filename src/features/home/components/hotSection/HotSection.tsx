@@ -54,7 +54,7 @@ export const HotSection = () => {
         <EdgeFadeLeft aria-hidden />
 
         <Carousel ref={scrollerRef}>
-          {data.map((novel) => {
+          {data.map((novel, index) => {
             if (!novel.slug) return null;
 
             return (
@@ -62,6 +62,7 @@ export const HotSection = () => {
                 to="/novel/$novel"
                 params={{ novel: novel.slug }}
                 key={novel.slug}
+                style={{ textDecoration: 'none', color: 'inherit' }}
               >
                 <Card title={novel.title}>
                   <CoverWrapper>
@@ -71,7 +72,7 @@ export const HotSection = () => {
                       loading="lazy"
                     />
 
-                    {novel.hasLabel && <Pill aria-label="Hot">HOT</Pill>}
+                    <Pill className={`rank-${index + 1}`}>{index + 1}</Pill>
                   </CoverWrapper>
 
                   <Title>{novel.title}</Title>

@@ -143,8 +143,27 @@ export const Pill = styled.span`
   border-radius: 9999px;
   color: var(--text);
   border: 1px solid var(--text);
-  background: color-mix(in oklab, var(--card) 40%, transparent);
-  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  min-width: 24px;
+  text-align: center;
+  border-width: 0;
+
+  &.rank-1 {
+    background: #eab308; /* Gold */
+    color: #fff;
+    border: 1px solid #ca8a04;
+  }
+  &.rank-2 {
+    background: #94a3b8; /* Silver */
+    color: #fff;
+    border: 1px solid #64748b;
+  }
+  &.rank-3 {
+    background: #d97706; /* Bronze */
+    color: #fff;
+    border: 1px solid #b45309;
+  }
 `;
 
 export const Title = styled.strong`

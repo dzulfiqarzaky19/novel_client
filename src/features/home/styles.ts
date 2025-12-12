@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 /* styled */
 export const Page = styled.main`
-  --page-max: 1200px;
+  --page-max: 1400px;
   max-width: var(--page-max);
   margin: 0 auto;
   padding: clamp(10px, 2.5vw, 16px) clamp(12px, 3vw, 16px)

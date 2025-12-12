@@ -6,11 +6,13 @@ import { useHomeCompleted } from 'features/home/hooks/useHome';
 import {
   Actions,
   ArrowArea,
+  Badge,
+  BadgeRow,
   Copy,
   Cover,
   CTA,
+  Description,
   Dot,
-  Fill,
   Frame,
   Ghost,
   Hero,
@@ -36,7 +38,7 @@ interface ICompletedSectionProps {
 
 export const CompletedSection = ({
   intervalMs = 10000,
-  ctaLabel = 'Read now',
+  ctaLabel = 'Read Now',
 }: ICompletedSectionProps) => {
   const { data } = useHomeCompleted();
 
@@ -54,73 +56,27 @@ export const CompletedSection = ({
   );
 
   const [index, setIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const timerRef = useRef<number | null>(null);
-  const lastTickRef = useRef<number | null>(null);
-  const pausedRef = useRef(false); // kept for logic, but no longer toggled by hover
+  const pausedRef = useRef(false);
 
   const go = (dir: 1 | -1) => {
     setIndex((i) => (i + dir + slides.length) % slides.length);
-
-    setProgress(0);
-
-    lastTickRef.current = null;
   };
 
   const goto = (i: number) => {
     setIndex(i);
-
-    setProgress(0);
-
-    lastTickRef.current = null;
   };
 
   useEffect(() => {
     if (!slides.length) return;
 
-    const step = (now: number) => {
-      if (pausedRef.current) {
-        lastTickRef.current = now;
-
-        timerRef.current = requestAnimationFrame(step);
-
-        return;
+    const tick = () => {
+      if (!pausedRef.current) {
+        setIndex((i) => (i + 1) % slides.length);
       }
-
-      lastTickRef.current ??= now;
-
-      const dt = now - lastTickRef.current;
-
-      lastTickRef.current = now;
-
-      setProgress((p) => {
-        const next = p + dt / intervalMs;
-
-        if (next >= 1) {
-          setIndex((i) => (i + 1) % slides.length);
-
-          return 0;
-        }
-
-        return next;
-      });
-
-      timerRef.current = requestAnimationFrame(step);
     };
 
-    const reduce = window.matchMedia?.(
-      '(prefers-reduced-motion: reduce)',
-    )?.matches;
-
-    if (!reduce) timerRef.current = requestAnimationFrame(step);
-
-    return () => {
-      if (timerRef.current) cancelAnimationFrame(timerRef.current);
-
-      timerRef.current = null;
-
-      lastTickRef.current = null;
-    };
+    const id = setInterval(tick, intervalMs);
+    return () => clearInterval(id);
   }, [slides.length, intervalMs]);
 
   if (!slides.length) return null;
@@ -129,11 +85,8 @@ export const CompletedSection = ({
   return (
     <Section bg={active.cover}>
       <Frame>
-        <ArrowArea>
-          <Ghost
-            onClick={() => go(-1)}
-            aria-label="Previous"
-          >
+        <ArrowArea className="prev">
+          <Ghost onClick={() => go(-1)} aria-label="Previous">
             ‹
           </Ghost>
         </ArrowArea>
@@ -141,64 +94,55 @@ export const CompletedSection = ({
         <Hero>
           <Visual>
             {active.cover ? (
-              <Cover
-                src={active.cover}
-                alt={active.title}
-              />
+              <Cover src={active.cover} alt={active.title} />
             ) : (
-              <Placeholder aria-label={active.title}>
-                {active.title}
-              </Placeholder>
+              <Placeholder aria-label={active.title}>{active.title}</Placeholder>
             )}
           </Visual>
 
           <Copy>
+            <BadgeRow>
+              <Badge>FEATURED</Badge>
+              <Badge className="rating">★ 4.8</Badge>
+            </BadgeRow>
+
             <Title title={active.title}>{active.title}</Title>
 
-            {active.subtitle && (
-              <Sub title={active.subtitle}>{active.subtitle}</Sub>
-            )}
+            <Sub>
+              <span>Action • Martial Arts • {active.subtitle}</span>
+            </Sub>
+
+            <Description>
+              In a world where strength determines destiny, a young man rises from the ashes of betrayal.
+              With the blood of the ancient Dragon Emperor flowing through his veins, he challenges the heavens
+              and crushes all who stand in his way.
+            </Description>
 
             <Actions>
-              <Link
-                to="/novel/$novel"
-                params={{ novel: active.slug }}
-              >
-                <CTA>{ctaLabel}</CTA>
+              <Link to="/novel/$novel" params={{ novel: active.slug }}>
+                <CTA primary>{ctaLabel}</CTA>
               </Link>
+              <CTA>+ Add to Library</CTA>
             </Actions>
           </Copy>
         </Hero>
 
-        <ArrowArea>
-          <Ghost
-            onClick={() => go(1)}
-            aria-label="Next"
-          >
+        <ArrowArea className="next">
+          <Ghost onClick={() => go(1)} aria-label="Next">
             ›
           </Ghost>
         </ArrowArea>
       </Frame>
 
-      <ProgressBar
-        role="tablist"
-        aria-label="Slides"
-      >
+      <ProgressBar role="tablist" aria-label="Slides">
         {slides.map((s, i) => (
           <Dot
             key={s.title}
             onClick={() => goto(i)}
+            className={i === index ? 'active' : ''}
             aria-label={`Go to ${s.title}`}
-          >
-            <Fill
-              style={{
-                transform:
-                  i === index
-                    ? `scaleX(${Math.max(0.04, Math.min(1, progress))})`
-                    : 'scaleX(0)',
-              }}
-            />
-          </Dot>
+            aria-selected={i === index}
+          />
         ))}
       </ProgressBar>
     </Section>

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
 export const Section = styled.section`
-  margin: clamp(16px, 3vw, 24px) 0;
-  padding: 0 clamp(12px, 3vw, 0);
-
+  margin: 0;
+  /* Remove dedicated padding if grid handles it */
+  
   --text: #111;
   --muted: #6b7280;
   --line: #e5e7eb;
@@ -19,119 +19,120 @@ export const Section = styled.section`
   }
 `;
 
+export const HeaderRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-left: 12px;
+  border-left: 4px solid #3b82f6; /* Blue accent bar */
+`;
+
 export const SectionHeader = styled.h2`
-  margin: 0 0 8px 0;
-  font-size: clamp(11px, 1.2vw, 12px);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
+  margin: 0;
+  font-size: 18px;
+  color: var(--text);
+  font-weight: 700;
+  font-family: 'Times New Roman', serif; /* Matching Hero vibe */
+  letter-spacing: -0.01em;
+`;
+
+export const ViewAll = styled.a`
+  font-size: 13px;
   font-weight: 600;
+  color: #3b82f6;
+  text-decoration: none;
+  cursor: pointer;
+  
+  &:hover { text-decoration: underline; }
 `;
 
 export const List = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 12px;
 `;
 
-/* Button row with larger tap area on mobile */
-export const Row = styled.button`
+export const Row = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-  width: 100%;
-  padding: clamp(10px, 2.5vw, 12px) 0;
-  background: transparent;
-  text-align: left;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--bg-hover); /* Card-like background for each item */
+  /* Or transparent with border? Reference looks like white cards on light bg */
+  
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s;
+  
   cursor: pointer;
-  border: 0;
-  border-bottom: 1px solid var(--line);
 
   &:hover {
-    background: var(--bg-hover);
+    transform: translateY(-2px);
+    background: color-mix(in oklab, var(--bg-hover), white 5%);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   }
+  
+  @media (prefers-color-scheme: dark) {
+    background: #111827;
+    border: 1px solid var(--line);
+  }
+`;
 
-  &:focus-visible {
-    outline: 2px solid color-mix(in oklab, var(--text) 30%, transparent);
-    outline-offset: 2px;
-    border-radius: 6px;
-  }
-
-  /* Mobile: increase hit area + enable momentum scroll if the list becomes long in a narrow viewport */
-  @media (max-width: 640px) {
-    padding: 14px 0;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Respect reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    scroll-behavior: auto;
-  }
+export const IconPlaceholder = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #374151;
+  display: grid;
+  place-items: center;
+  color: #9ca3af;
+  font-size: 18px;
+  flex-shrink: 0;
 `;
 
 export const Col = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  min-width: 0; /* enables ellipsis */
+  gap: 4px;
+  min-width: 0;
 `;
 
-export const Title = styled.strong`
-  color: var(--text);
+export const Title = styled.h3`
+  margin: 0;
+  font-size: 15px;
   font-weight: 600;
-  font-size: clamp(14px, 1.8vw, 15px);
-  line-height: 1.35;
+  color: var(--text);
+  line-height: 1.3;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 export const Sub = styled.p`
   margin: 0;
-  font-size: clamp(12px, 1.6vw, 13px);
+  font-size: 13px;
   color: var(--muted);
-  line-height: 1.35;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-export const Right = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
-  flex: 0 0 auto;
-
-  /* On very small screens, wrap to keep times visible */
-  @media (max-width: 400px) {
-    gap: 6px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    max-width: 40%;
-  }
 `;
 
-export const New = styled.span`
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 2px 6px;
-  border: 1px solid var(--pill);
-  color: var(--pill);
-  border-radius: 9999px;
-
-  /* Slightly larger pill on touch devices */
-  @media (hover: none) and (pointer: coarse) {
-    padding: 3px 8px;
-  }
-`;
-
-export const Time = styled.time`
-  font-size: clamp(11px, 1.4vw, 12px);
+export const Time = styled.span`
+  font-size: 12px;
   color: var(--muted);
   white-space: nowrap;
+  flex-shrink: 0;
+`;
+
+export const NewBadge = styled.span`
+  font-size: 10px;
+  font-weight: 800;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
 `;

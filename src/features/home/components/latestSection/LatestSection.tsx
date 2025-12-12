@@ -4,15 +4,17 @@ import { useHomeLatest } from 'features/home/hooks/useHome';
 
 import {
   Col,
+  HeaderRow,
+  IconPlaceholder,
   List,
-  New,
-  Right,
+  NewBadge,
   Row,
   Section,
   SectionHeader,
   Sub,
   Time,
   Title,
+  ViewAll,
 } from './styles';
 
 export const LatestSection = () => {
@@ -20,7 +22,10 @@ export const LatestSection = () => {
 
   return (
     <Section>
-      <SectionHeader>Latest</SectionHeader>
+      <HeaderRow>
+        <SectionHeader>Latest Updates</SectionHeader>
+        <ViewAll>View All</ViewAll>
+      </HeaderRow>
 
       <List role="list">
         {data
@@ -31,33 +36,27 @@ export const LatestSection = () => {
               role="listitem"
               to="/novel/$novel"
               params={{ novel: n.slug }}
+              style={{ textDecoration: 'none', color: 'inherit' }}
             >
               <Row>
+                <IconPlaceholder>📖</IconPlaceholder>
+
                 <Col>
                   <Title title={n.title}>{n.title}</Title>
 
                   <Sub title={n.latestChapter.title}>
-                    <Link
-                      to="/novel/$novel/$chapter"
-                      params={{
-                        novel: n.slug,
-                        chapter: n.latestChapter.chapterSlug,
-                      }}
-                    >
-                      {n.latestChapter.title}
-                    </Link>
+                    {n.latestChapter.title}
+                    {n.isNew && <NewBadge>NEW</NewBadge>}
                   </Sub>
                 </Col>
 
-                <Right>
-                  {n.isNew && <New>NEW</New>}
-
-                  <Time>{n.updatedTime}</Time>
-                </Right>
+                <Time>{n.updatedTime}</Time>
               </Row>
             </Link>
           ))}
       </List>
+
+      {/* Optional: Load More Button */}
     </Section>
   );
 };
