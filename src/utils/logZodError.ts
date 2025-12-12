@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-// these exist on some codes like invalid_type
 import { type ZodIssue } from 'zod';
 
 export function logZodError(issues: ZodIssue[]) {
