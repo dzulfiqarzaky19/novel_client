@@ -6,7 +6,6 @@ import { api } from './api';
 
 import type { AxiosResponse } from 'axios';
 
-// Your Zod schemas remain unchanged
 const hot = z.object({
   title: z.string(),
   absoluteUrl: z.string().url().optional(),
