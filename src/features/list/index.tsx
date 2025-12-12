@@ -1,23 +1,25 @@
 import { useParams } from '@tanstack/react-router';
+import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import { useList } from './hooks/useList';
 
-import {
-  Page,
-  Header,
-  ListWrap,
-  Card,
-  MainLink,
-  Cover,
-  Meta,
-  Title,
-  Author,
-  RightCol,
-  LatestLink,
-  Pagination,
-  PageBtn,
-} from './styles';
+import { ListHeader } from './components/ListHeader/ListHeader';
+import { NovelListItem } from './components/NovelListItem/NovelListItem';
+import { Pagination } from './components/Pagination/Pagination';
+
+const Page = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  min-height: 100vh;
+`;
+
+const ListGrid = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
 
 export const List = () => {
   const { list, listType } = useParams({ from: '/$list/$listType' });
@@ -35,7 +37,6 @@ export const List = () => {
 
     if (difference > 1) {
       const newPage = pageList.map((el) => el + difference - 1);
-
       setPageList(newPage);
     }
 
@@ -44,81 +45,34 @@ export const List = () => {
       const newPage = pageList.map((el) => el - (difference + balancer));
 
       if (pageList[0] <= 1) return;
-
       setPageList(newPage);
     }
   };
 
+  const title =
+    (list.split('-')[2] ?? list) +
+    ' by ' +
+    (listType.split('-')[2] ?? listType).toLowerCase();
+
   return (
     <Page>
-      <Header>
-        {(list.split('-')[2] ?? list) +
-          ' by ' +
-          (listType.split('-')[2] ?? listType).toLowerCase()}
-      </Header>
+      <ListHeader title={title} />
 
-      <ListWrap>
-        {data.list.map((novel) => {
-          const novelHref = {
-            to: '/novel/$novel' as const,
-            params: { novel: novel.slug },
-          };
+      <ListGrid>
+        {data.list.map((novel) => (
+          <NovelListItem
+            key={novel.slug}
+            novel={novel}
+          />
+        ))}
+      </ListGrid>
 
-          const latestHref = {
-            to: '/novel/$novel/$chapter' as const,
-            params: {
-              novel: novel.latestChapter.path.split('/')[2],
-              chapter: novel.latestChapter.chapterSlug,
-            },
-          };
-
-          if (!novel.title) return null;
-
-          return (
-            <Card key={novel.slug}>
-              <MainLink {...novelHref}>
-                <Cover
-                  src={novel.coverAbsoluteUrl}
-                  alt={novel.title}
-                />
-
-                <Meta>
-                  <Title>{novel.title}</Title>
-
-                  <Author>{novel.author}</Author>
-                </Meta>
-              </MainLink>
-
-              <RightCol>
-                <LatestLink {...latestHref}>
-                  {novel.latestChapter.title}
-                </LatestLink>
-              </RightCol>
-            </Card>
-          );
-        })}
-      </ListWrap>
-
-      <Pagination>
-        {pageList.map((pageNumber) => {
-          const isActive = pageNumber === page;
-
-          const isDisabled =
-            pageNumber === page || (data.list.length < 20 && pageNumber > page);
-
-          return (
-            <PageBtn
-              key={pageNumber}
-              onClick={() => handlePage(pageNumber)}
-              disabled={isDisabled}
-              active={isActive}
-              aria-current={isActive ? 'page' : undefined}
-            >
-              {pageNumber}
-            </PageBtn>
-          );
-        })}
-      </Pagination>
+      <Pagination
+        page={page}
+        pageList={pageList}
+        onPageChange={handlePage}
+        hasNext={data.list.length >= 20}
+      />
     </Page>
   );
 };
