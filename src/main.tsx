@@ -4,8 +4,9 @@ import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import './index.css';
 import { routeTree } from './routeTree.gen';
+import { ThemeProviderContext } from './hooks/useThemeContext';
+import { GlobalStyles } from './Global';
 
 const queryClient = new QueryClient();
 
@@ -29,11 +30,14 @@ if (!rootElement.innerHTML) {
 
   root.render(
     <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <AppWrapper>
-          <RouterProvider router={router} />
-        </AppWrapper>
-      </QueryClientProvider>
+      <ThemeProviderContext>
+        <GlobalStyles />
+        <QueryClientProvider client={queryClient}>
+          <AppWrapper>
+            <RouterProvider router={router} />
+          </AppWrapper>
+        </QueryClientProvider>
+      </ThemeProviderContext>
     </StrictMode>,
   );
 }
