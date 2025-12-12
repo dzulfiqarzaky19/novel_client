@@ -1,18 +1,20 @@
 import styled from '@emotion/styled';
 
 export const Wrapper = styled.section`
-  background: #0b0f14;
-  border-radius: 12px;
-  padding: 24px;
+  background: ${({ theme }) => theme.colors.surface.card};
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
+  padding: ${({ theme }) => theme.spacing[6]};
   display: grid;
   grid-template-columns: 240px 1fr;
-  gap: 32px;
-  margin-bottom: 32px;
-  border: 1px solid #1f2937;
+  gap: ${({ theme }) => theme.spacing[8]};
+  margin-bottom: ${({ theme }) => theme.spacing[8]};
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  box-shadow: ${({ theme }) => theme.shadows.lg};
+  transition: all ${({ theme }) => theme.transitions.base};
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: ${({ theme }) => theme.spacing[6]};
   }
 `;
 
@@ -24,69 +26,69 @@ export const Cover = styled.img`
   width: 100%;
   aspect-ratio: 2 / 3;
   object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  box-shadow: ${({ theme }) => theme.shadows.xl};
 `;
 
 export const InfoCol = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: ${({ theme }) => theme.spacing[5]};
 `;
 
 export const Header = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing[2]};
 `;
 
 export const Title = styled.h1`
   margin: 0;
-  font-size: 32px;
-  line-height: 1.2;
-  font-weight: 700;
-  color: #fff;
+  font-size: clamp(24px, 4vw, 32px);
+  line-height: ${({ theme }) => theme.typography.lineHeight.tight};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  color: ${({ theme }) => theme.colors.text.primary};
   font-family: 'Times New Roman', serif;
 `;
 
 export const MetaRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 16px;
-  font-size: 13px;
-  color: #9ca3af;
+  gap: ${({ theme }) => theme.spacing[4]};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  color: ${({ theme }) => theme.colors.text.secondary};
   flex-wrap: wrap;
 `;
 
 export const RatingBadge = styled.span`
   background: #ca8a04;
-  color: #fff;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 12px;
+  color: ${({ theme }) => theme.colors.text.inverse};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  padding: ${({ theme }) => theme.spacing[1]} ${({ theme }) => theme.spacing[2]};
+  border-radius: ${({ theme }) => theme.borderRadius.sm};
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
 `;
 
 export const InfoGrid = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
-  row-gap: 8px;
-  column-gap: 32px;
-  font-size: 14px;
+  row-gap: ${({ theme }) => theme.spacing[2]};
+  column-gap: ${({ theme }) => theme.spacing[8]};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
 
   dt {
-    color: #6b7280;
-    font-weight: 600;
+    color: ${({ theme }) => theme.colors.text.tertiary};
+    font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
     text-transform: uppercase;
-    font-size: 11px;
+    font-size: ${({ theme }) => theme.typography.fontSize.xs};
     letter-spacing: 0.05em;
-    padding-top: 2px;
+    padding-top: ${({ theme }) => theme.spacing[1]};
   }
 
   dd {
     margin: 0;
-    color: #e5e7eb;
-    font-weight: 500;
+    color: ${({ theme }) => theme.colors.text.primary};
+    font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
   }
 
   @media (min-width: 600px) {
@@ -96,70 +98,89 @@ export const InfoGrid = styled.div`
 
 export const ActionRow = styled.div`
   display: flex;
-  gap: 16px;
-  margin-top: 8px;
+  gap: ${({ theme }) => theme.spacing[4]};
+  margin-top: ${({ theme }) => theme.spacing[2]};
 `;
 
 export const ReadBtn = styled.button`
-  background: #3b82f6;
-  color: #fff;
+  background: ${({ theme }) => theme.colors.primary[500]};
+  color: ${({ theme }) => theme.colors.text.inverse};
   border: 0;
-  border-radius: 6px;
-  padding: 12px 32px;
-  font-weight: 700;
-  font-size: 14px;
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  padding: ${({ theme }) => theme.spacing[3]} ${({ theme }) => theme.spacing[8]};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
   text-transform: uppercase;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
-  transition: background 0.2s;
+  gap: ${({ theme }) => theme.spacing[2]};
+  transition: all ${({ theme }) => theme.transitions.fast};
+  box-shadow: ${({ theme }) => theme.shadows.md};
 
   &:hover {
-    background: #2563eb;
+    background: ${({ theme }) => theme.colors.primary[600]};
+    box-shadow: ${({ theme }) => theme.shadows.lg};
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 `;
 
 export const LibBtn = styled.button`
-  background: #1f2937;
-  color: #d1d5db;
-  border: 1px solid #374151;
-  border-radius: 6px;
-  padding: 12px 32px;
-  font-weight: 600;
-  font-size: 14px;
+  background: ${({ theme }) => theme.colors.surface.elevated};
+  color: ${({ theme }) => theme.colors.text.secondary};
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  padding: ${({ theme }) => theme.spacing[3]} ${({ theme }) => theme.spacing[8]};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
-  transition: all 0.2s;
+  gap: ${({ theme }) => theme.spacing[2]};
+  transition: all ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    background: #374151;
-    color: #fff;
+    background: ${({ theme }) => theme.colors.surface.cardHover};
+    color: ${({ theme }) => theme.colors.text.primary};
+    border-color: ${({ theme }) => theme.colors.border.strong};
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 `;
 
 export const TagsRow = styled.div`
   display: flex;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing[2]};
   flex-wrap: wrap;
   align-items: center;
 `;
 
 export const TagLabel = styled.span`
-  font-size: 11px;
-  font-weight: 700;
-  color: #6b7280;
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  color: ${({ theme }) => theme.colors.text.tertiary};
   text-transform: uppercase;
-  margin-right: 4px;
+  margin-right: ${({ theme }) => theme.spacing[1]};
 `;
 
 export const TagPill = styled.span`
-  background: #1f2937;
-  color: #9ca3af;
-  font-size: 11px;
-  padding: 4px 10px;
-  border-radius: 99px;
-  border: 1px solid #374151;
+  background: ${({ theme }) => theme.colors.surface.elevated};
+  color: ${({ theme }) => theme.colors.text.secondary};
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  padding: ${({ theme }) => theme.spacing[1]} ${({ theme }) => theme.spacing[2]};
+  border-radius: ${({ theme }) => theme.borderRadius.full};
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  transition: all ${({ theme }) => theme.transitions.fast};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.surface.cardHover};
+    border-color: ${({ theme }) => theme.colors.border.strong};
+  }
 `;

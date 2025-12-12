@@ -22,7 +22,6 @@ export const ThemeToggleButton = styled.button`
   align-items: center;
   justify-content: center;
   background: transparent;
-  border: 1px solid ${({ theme }) => theme.colors.border.default};
   color: ${({ theme }) => theme.colors.text.primary};
   padding: ${({ theme }) => theme.spacing[2]};
   border-radius: ${({ theme }) => theme.borderRadius.md};
@@ -33,11 +32,11 @@ export const ThemeToggleButton = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.colors.surface.cardHover};
     border-color: ${({ theme }) => theme.colors.border.strong};
-    transform: none;
-    box-shadow: none;
   }
+`;
 
-  &:active {
-    transform: scale(0.95);
-  }
+export const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 `;

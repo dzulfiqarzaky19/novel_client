@@ -1,47 +1,51 @@
 import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
-  margin-top: 24px;
+  margin-top: ${({ theme }) => theme.spacing[6]};
 `;
 
 export const SectionTitle = styled.h3`
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
   text-transform: uppercase;
-  color: #9ca3af;
-  margin-bottom: 16px;
-  font-weight: 700;
+  color: ${({ theme }) => theme.colors.text.secondary};
+  margin-bottom: ${({ theme }) => theme.spacing[4]};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  letter-spacing: 0.05em;
 `;
 
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 16px;
+  gap: ${({ theme }) => theme.spacing[4]};
 `;
 
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing[2]};
+  transition: transform ${({ theme }) => theme.transitions.base};
 
   &:hover img {
     transform: translateY(-4px);
+    box-shadow: ${({ theme }) => theme.shadows.lg};
   }
 `;
 
 export const Cover = styled.img`
   width: 100%;
   aspect-ratio: 2/3;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
   object-fit: cover;
-  transition: transform 0.2s;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all ${({ theme }) => theme.transitions.base};
+  box-shadow: ${({ theme }) => theme.shadows.md};
 `;
 
 export const Title = styled.h4`
   margin: 0;
-  font-size: 14px;
-  color: #fff;
-  font-weight: 600;
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  color: ${({ theme }) => theme.colors.text.primary};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  line-height: ${({ theme }) => theme.typography.lineHeight.tight};
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -49,6 +53,6 @@ export const Title = styled.h4`
 `;
 
 export const Sub = styled.span`
-  font-size: 12px;
-  color: #6b7280;
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  color: ${({ theme }) => theme.colors.text.tertiary};
 `;

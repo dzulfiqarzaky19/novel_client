@@ -1,31 +1,32 @@
 import styled from '@emotion/styled';
 
 export const Cards = styled.div`
-  background: #0b0f14;
-  border-radius: 12px;
-  padding: 24px;
-  border: 1px solid #1f2937;
-  margin-bottom: 24px;
+  background: ${({ theme }) => theme.colors.surface.card};
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
+  padding: ${({ theme }) => theme.spacing[6]};
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  margin-bottom: ${({ theme }) => theme.spacing[6]};
+  box-shadow: ${({ theme }) => theme.shadows.md};
 `;
 
 export const Title = styled.h3`
-  margin: 0 0 16px 0;
-  font-size: 14px;
+  margin: 0 0 ${({ theme }) => theme.spacing[4]} 0;
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #6b7280;
-  font-weight: 700;
-  border-bottom: 1px solid #1f2937;
-  padding-bottom: 12px;
+  color: ${({ theme }) => theme.colors.text.tertiary};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border.default};
+  padding-bottom: ${({ theme }) => theme.spacing[3]};
 `;
 
 export const Text = styled.div`
-  color: #d1d5db;
-  font-size: 15px;
-  line-height: 1.8;
+  color: ${({ theme }) => theme.colors.text.primary};
+  font-size: ${({ theme }) => theme.typography.fontSize.base};
+  line-height: ${({ theme }) => theme.typography.lineHeight.relaxed};
 
   p {
-    margin-bottom: 16px;
+    margin-bottom: ${({ theme }) => theme.spacing[4]};
     &:last-child {
       margin-bottom: 0;
     }
