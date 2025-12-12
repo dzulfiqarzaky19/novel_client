@@ -1,6 +1,6 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
-import { getChapter } from 'libs/novelChapter';
+import { getChapter } from '../api/chapterApi';
 
 export const chapterQuery = (slug: string) =>
   queryOptions({

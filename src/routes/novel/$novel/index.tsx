@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router';
 import z from 'zod';
 
-import { Detail } from 'app/detail/Detail';
-import { ErrorPage } from 'app/error/Error';
-import { LoaderPage } from 'app/loader/Loader';
-import { detailQuery } from 'hooks/useDetail';
+import { ErrorPage } from 'components/error/Error';
+import { LoaderPage } from 'components/loader/Loader';
+import { detailQuery } from 'features/detail/hooks/useDetail';
+import { Detail } from 'features/detail';
 
 const Params = z.object({
   novel: z.string().min(1),

@@ -23,7 +23,7 @@ export default defineConfig({
       components: path.resolve(__dirname, './src/components'),
       features: path.resolve(__dirname, './src/features'),
       hooks: path.resolve(__dirname, './src/hooks'),
-      libs: path.resolve(__dirname, './src/libs'),
+      lib: path.resolve(__dirname, './src/lib'),
       utils: path.resolve(__dirname, './src/utils'),
       routes: path.resolve(__dirname, './src/routes'),
     },

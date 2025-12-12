@@ -2,9 +2,9 @@ import { z } from 'zod';
 
 import { logZodError } from 'utils/logZodError';
 
-import { api } from './api';
 
 import type { AxiosResponse } from 'axios';
+import { api } from 'lib/api';
 
 const hot = z.object({
   title: z.string(),
@@ -63,10 +63,12 @@ export const HomePayload = z.object({
 
 export type THomePayload = z.infer<typeof HomePayload>;
 
+export const HOME_API = '/api/novlove';
+
 export const getHome = async (): Promise<THomePayload> => {
   try {
     const response: AxiosResponse<unknown, THomePayload> =
-      await api.get('/api/novlove');
+      await api.get(HOME_API);
 
     const result = HomePayload.safeParse(response.data);
 

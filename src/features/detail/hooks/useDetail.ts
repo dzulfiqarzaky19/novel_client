@@ -1,6 +1,6 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
-import { getDetail } from 'libs/novelDetail';
+import { getDetail } from '../api/detailApi';
 
 export const detailQuery = (slug: string) =>
   queryOptions({

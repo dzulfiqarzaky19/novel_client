@@ -5,7 +5,7 @@ import {
 } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
-import { NotFoundPage } from 'app/notFound/NotFound';
+import { NotFoundPage } from 'components/notFound/NotFound';
 
 import type { QueryClient } from '@tanstack/react-query';
 

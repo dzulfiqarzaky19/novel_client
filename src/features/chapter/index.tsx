@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Link, useParams } from '@tanstack/react-router';
 
-import { useNovelChapter } from 'hooks/useChapter';
+import { useNovelChapter } from './hooks/useChapter';
 import { formatChapter } from 'utils/formatChapter';
 
 const Page = styled.div`
@@ -68,7 +68,7 @@ const Spacer = styled.div`
 
 const NavButton = styled(Link, {
   shouldForwardProp: (p) => p !== 'disabled',
-})<{ disabled?: boolean }>`
+}) <{ disabled?: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;

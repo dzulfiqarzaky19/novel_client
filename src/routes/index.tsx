@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { ErrorPage } from 'app/error/Error';
-import { LoaderPage } from 'app/loader/Loader';
+import { ErrorPage } from 'components/error/Error';
+import { LoaderPage } from 'components/loader/Loader';
 import { Home } from 'features/home';
 import { homeQuery } from 'features/home/hooks/useHome';
 

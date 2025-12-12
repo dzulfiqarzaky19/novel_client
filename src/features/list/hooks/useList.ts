@@ -1,6 +1,6 @@
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 
-import { getList } from 'libs/novelList';
+import { getList } from '../api/listApi';
 
 export const listQuery = (slug: string) =>
   queryOptions({
