@@ -2,62 +2,54 @@ import styled from '@emotion/styled';
 
 export const Section = styled.section`
   margin: 0;
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  border: 1px solid #e5e7eb;
-
-  @media (prefers-color-scheme: dark) {
-    background: #0b0f14;
-    border-color: #1f2937;
-  }
+  background: ${({ theme }) => theme.colors.surface.card};
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
+  padding: ${({ theme }) => theme.spacing[5]};
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  transition: background ${({ theme }) => theme.transitions.base};
 `;
 
 export const SectionHeader = styled.h2`
-  margin: 0 0 16px 0;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text);
+  margin: 0 0 ${({ theme }) => theme.spacing[4]} 0;
+  font-size: ${({ theme }) => theme.typography.fontSize.base};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  color: ${({ theme }) => theme.colors.text.primary};
   font-family: 'Times New Roman', serif;
-  border-bottom: 2px solid #e5e7eb;
-  padding-bottom: 8px;
-
-  @media (prefers-color-scheme: dark) {
-    border-color: #1f2937;
-  }
+  border-bottom: 2px solid ${({ theme }) => theme.colors.border.default};
+  padding-bottom: ${({ theme }) => theme.spacing[2]};
 `;
 
 export const List = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: ${({ theme }) => theme.spacing[1]};
 `;
 
 export const Row = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
-  border-radius: 6px;
+  padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[3]};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
   cursor: pointer;
-  transition: background 0.2s;
-  color: var(--muted);
+  transition: all ${({ theme }) => theme.transitions.fast};
+  color: ${({ theme }) => theme.colors.text.secondary};
 
   &:hover {
-    background: var(--bg-hover);
-    color: var(--text);
+    background: ${({ theme }) => theme.colors.surface.cardHover};
+    color: ${({ theme }) => theme.colors.text.primary};
   }
 `;
 
 export const Title = styled.span`
-  font-size: 14px;
-  font-weight: 500;
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
 `;
 
-/* Optional pill/badge if we had counts */
 export const Count = styled.span`
-  font-size: 12px;
-  background: var(--bg-hover);
-  padding: 2px 8px;
-  border-radius: 99px;
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  background: ${({ theme }) => theme.colors.surface.cardHover};
+  padding: ${({ theme }) => theme.spacing[1]} ${({ theme }) => theme.spacing[2]};
+  border-radius: ${({ theme }) => theme.borderRadius.full};
+  color: ${({ theme }) => theme.colors.text.tertiary};
 `;

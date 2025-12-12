@@ -4,23 +4,11 @@ import { getRouteApi } from '@tanstack/react-router';
 const HomeRoute = getRouteApi('/');
 
 const Full = styled.div`
-  --text: #111;
-  --muted: #6b7280;
-  --line: #e5e7eb;
-  --bg-hover: #f9fafb;
-
-  @media (prefers-color-scheme: dark) {
-    --text: #e5e7eb;
-    --muted: #9ca3af;
-    --line: #1f2937;
-    --bg-hover: #0b0f14;
-  }
-
   min-height: 60vh;
   display: grid;
   place-items: center;
   padding: clamp(16px, 3vw, 24px);
-  color: var(--text);
+  color: ${({ theme }) => theme.colors.text.primary};
 `;
 
 const Bubble = styled.div`
@@ -28,9 +16,10 @@ const Bubble = styled.div`
   margin: 0 auto;
   width: clamp(220px, 40vw, 360px);
   padding: clamp(12px, 2.5vw, 16px) clamp(14px, 3vw, 20px);
-  border: 1px solid var(--line);
-  border-radius: 16px;
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
   text-align: left;
+  background: ${({ theme }) => theme.colors.surface.card};
 
   &:after {
     content: '';
@@ -39,8 +28,8 @@ const Bubble = styled.div`
     bottom: -10px;
     width: 14px;
     height: 14px;
-    background: transparent;
-    border: 1px solid var(--line);
+    background: ${({ theme }) => theme.colors.surface.card};
+    border: 1px solid ${({ theme }) => theme.colors.border.default};
     border-top: 0;
     border-left: 0;
     transform: rotate(45deg);
@@ -87,7 +76,7 @@ const ErrTitle = styled.h2`
 const ErrSub = styled.p`
   margin: 0;
   font-size: clamp(12px, 1.8vw, 14px);
-  color: var(--muted);
+  color: ${({ theme }) => theme.colors.text.secondary};
 `;
 
 const Actions = styled.div`
@@ -100,29 +89,34 @@ const Actions = styled.div`
 
 const Btn = styled.button`
   appearance: none;
-  border: 1px solid var(--line);
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
   background: transparent;
   color: inherit;
-  border-radius: 10px;
-  padding: 10px 14px;
-  font-weight: 600;
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[4]};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
   cursor: pointer;
+  transition: all ${({ theme }) => theme.transitions.fast};
+  box-shadow: none;
 
   &:hover {
-    background: var(--bg-hover);
+    background: ${({ theme }) => theme.colors.surface.cardHover};
+    transform: none;
+    box-shadow: none;
   }
 `;
 
 const LinkBtn = styled(HomeRoute.Link)`
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 10px 14px;
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[4]};
   text-decoration: none;
   color: inherit;
-  font-weight: 600;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  transition: all ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    background: var(--bg-hover);
+    background: ${({ theme }) => theme.colors.surface.cardHover};
   }
 `;
 

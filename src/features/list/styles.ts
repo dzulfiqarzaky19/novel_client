@@ -11,7 +11,8 @@ export const Page = styled.div`
 export const Header = styled.h1`
   margin: 0 0 clamp(14px, 3vw, 20px);
   font-size: clamp(20px, 3vw, 28px);
-  line-height: 1.2;
+  line-height: ${({ theme }) => theme.typography.lineHeight.tight};
+  color: ${({ theme }) => theme.colors.text.primary};
 `;
 
 export const ListWrap = styled.div`
@@ -23,12 +24,15 @@ export const Card = styled.div`
   display: grid;
   grid-template-columns: 3fr 1fr;
   gap: clamp(10px, 2vw, 16px);
-  border: 1px solid var(--line, #e5e7eb);
-  border-radius: 12px;
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
   padding: clamp(10px, 2vw, 14px);
+  background: ${({ theme }) => theme.colors.surface.card};
+  transition: all ${({ theme }) => theme.transitions.fast};
 
-  @media (prefers-color-scheme: dark) {
-    border-color: var(--line, #1f2937);
+  &:hover {
+    background: ${({ theme }) => theme.colors.surface.cardHover};
+    box-shadow: ${({ theme }) => theme.shadows.sm};
   }
 
   @media (max-width: 720px) {
@@ -38,7 +42,7 @@ export const Card = styled.div`
 
 export const MainLink = styled(NovelRoute.Link)`
   display: flex;
-  gap: 12px;
+  gap: ${({ theme }) => theme.spacing[3]};
   text-decoration: none;
   color: inherit;
   align-items: flex-start;
@@ -52,8 +56,9 @@ export const Cover = styled.img`
   width: 84px;
   height: 112px;
   object-fit: cover;
-  border-radius: 10px;
-  transition: transform 160ms ease;
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  transition: transform ${({ theme }) => theme.transitions.base};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
 
   @media (max-width: 420px) {
     width: 72px;
@@ -64,15 +69,16 @@ export const Cover = styled.img`
 export const Meta = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: ${({ theme }) => theme.spacing[2]};
   min-width: 0;
 `;
 
 export const Title = styled.h3`
   margin: 0;
   font-size: clamp(15px, 2.2vw, 18px);
-  line-height: 1.3;
-  font-weight: 700;
+  line-height: ${({ theme }) => theme.typography.lineHeight.tight};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  color: ${({ theme }) => theme.colors.text.primary};
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -83,11 +89,7 @@ export const Title = styled.h3`
 export const Author = styled.p`
   margin: 0;
   font-size: clamp(12px, 1.8vw, 14px);
-  color: var(--muted, #6b7280);
-
-  @media (prefers-color-scheme: dark) {
-    color: var(--muted, #9ca3af);
-  }
+  color: ${({ theme }) => theme.colors.text.secondary};
 `;
 
 export const RightCol = styled.div`
@@ -103,33 +105,29 @@ export const RightCol = styled.div`
 export const LatestLink = styled(ChapterRoute.Link)`
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid var(--line, #e5e7eb);
+  gap: ${({ theme }) => theme.spacing[2]};
+  padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[3]};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  background: ${({ theme }) => theme.colors.surface.card};
   text-decoration: none;
-  color: inherit;
+  color: ${({ theme }) => theme.colors.text.primary};
   font-size: clamp(12px, 1.8vw, 14px);
-  line-height: 1.2;
-  font-weight: 600;
+  line-height: ${({ theme }) => theme.typography.lineHeight.tight};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  transition: all ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    background: var(--bg-hover, #f9fafb);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    border-color: var(--line, #1f2937);
-
-    &:hover {
-      background: var(--bg-hover, #0b0f14);
-    }
+    background: ${({ theme }) => theme.colors.surface.cardHover};
+    border-color: ${({ theme }) => theme.colors.border.strong};
+    box-shadow: ${({ theme }) => theme.shadows.sm};
   }
 `;
 
 export const Pagination = styled.nav`
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing[2]};
   margin: clamp(14px, 3vw, 20px) auto 0;
   flex-wrap: wrap;
 `;
@@ -137,23 +135,26 @@ export const Pagination = styled.nav`
 export const PageBtn = styled.button<{ active?: boolean }>`
   min-width: 36px;
   height: 36px;
-  padding: 0 10px;
-  border-radius: 10px;
-  border: 1px solid var(--line, #e5e7eb);
-  background: ${({ active }) =>
-    active ? 'var(--bg-hover, #f9fafb)' : 'transparent'};
-  color: inherit;
-  font-weight: 600;
+  padding: 0 ${({ theme }) => theme.spacing[2]};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  background: ${({ active, theme }) => 
+    active ? theme.colors.surface.cardHover : theme.colors.surface.card};
+  color: ${({ theme }) => theme.colors.text.primary};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
   cursor: pointer;
+  transition: all ${({ theme }) => theme.transitions.fast};
+  box-shadow: none;
+
+  &:hover:not(:disabled) {
+    background: ${({ theme }) => theme.colors.surface.cardHover};
+    border-color: ${({ theme }) => theme.colors.border.strong};
+    transform: none;
+    box-shadow: none;
+  }
 
   &:disabled {
     opacity: 0.45;
     cursor: default;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    border-color: var(--line, #1f2937);
-    background: ${({ active }) =>
-      active ? 'var(--bg-hover, #0b0f14)' : 'transparent'};
   }
 `;

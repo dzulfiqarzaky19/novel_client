@@ -1,23 +1,11 @@
 import styled from '@emotion/styled';
 
 const Full = styled.div`
-  --text: #111;
-  --muted: #6b7280;
-  --line: #e5e7eb;
-  --bg-hover: #f9fafb;
-
-  @media (prefers-color-scheme: dark) {
-    --text: #e5e7eb;
-    --muted: #9ca3af;
-    --line: #1f2937;
-    --bg-hover: #0b0f14;
-  }
-
   min-height: 60vh;
   display: grid;
   place-items: center;
   padding: clamp(16px, 3vw, 24px);
-  color: var(--text);
+  color: ${({ theme }) => theme.colors.text.primary};
 `;
 
 const Card = styled.div`
@@ -37,7 +25,7 @@ const Title = styled.h1`
 const Sub = styled.p`
   margin: 0;
   font-size: clamp(13px, 1.8vw, 14px);
-  color: var(--muted);
+  color: ${({ theme }) => theme.colors.text.secondary};
 `;
 
 const SpinnerWrap = styled.div`
@@ -49,8 +37,8 @@ const SpinnerWrap = styled.div`
 const Spinner = styled.div`
   width: 52px;
   height: 52px;
-  border-radius: 50%;
-  border: 3px solid var(--line);
+  border-radius: ${({ theme }) => theme.borderRadius.full};
+  border: 3px solid ${({ theme }) => theme.colors.border.default};
   border-top-color: currentColor;
   animation: spin 900ms linear infinite;
 

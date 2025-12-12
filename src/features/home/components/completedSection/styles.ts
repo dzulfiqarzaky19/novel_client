@@ -2,21 +2,20 @@ import styled from '@emotion/styled';
 
 export const Section = styled.section<{ bg?: string | null }>`
   position: relative;
-  border-radius: 20px;
-  background: #0b0f14;
+  border-radius: ${({ theme }) => theme.borderRadius['2xl']};
+  background: ${({ theme }) => theme.colors.surface.elevated};
   overflow: hidden;
   margin-bottom: clamp(24px, 4vw, 32px);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+  box-shadow: ${({ theme }) => theme.shadows.xl};
 
   /* Background Image Layer */
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: ${({ bg }) =>
-      bg ? `url(${bg}) center top / cover no-repeat` : 'none'};
+    background: ${({ bg }) => (bg ? `url(${bg}) center top / cover no-repeat` : 'none')};
     filter: blur(60px) brightness(0.4) saturate(1.2);
-    transform: scale(1.1); /* prevent blur edges */
+    transform: scale(1.1);
     z-index: 0;
   }
 
@@ -27,9 +26,9 @@ export const Section = styled.section<{ bg?: string | null }>`
     inset: 0;
     background: linear-gradient(
       90deg,
-      rgba(11, 15, 20, 0.8) 0%,
-      rgba(11, 15, 20, 0.4) 50%,
-      rgba(11, 15, 20, 0.8) 100%
+      ${({ theme }) => theme.colors.surface.overlay} 0%,
+      ${({ theme }) => theme.colors.surface.overlay}66 50%,
+      ${({ theme }) => theme.colors.surface.overlay} 100%
     );
     z-index: 1;
   }
@@ -44,9 +43,7 @@ export const Frame = styled.div`
   min-height: clamp(360px, 45vw, 480px);
   display: flex;
   align-items: center;
-
-  /* Arrows placement */
-  padding: 0 12px;
+  padding: 0 ${({ theme }) => theme.spacing[3]};
 `;
 
 export const ArrowArea = styled.div`
@@ -71,7 +68,7 @@ export const ArrowArea = styled.div`
 export const Ghost = styled.button`
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: ${({ theme }) => theme.borderRadius.full};
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.3);
   color: #fff;
@@ -80,11 +77,14 @@ export const Ghost = styled.button`
   justify-content: center;
   cursor: pointer;
   backdrop-filter: blur(4px);
-  transition: all 0.2s ease;
+  transition: all ${({ theme }) => theme.transitions.fast};
+  box-shadow: none;
 
   &:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.3);
+    transform: none;
+    box-shadow: none;
   }
 `;
 
@@ -94,27 +94,27 @@ export const Hero = styled.div`
   grid-template-columns: minmax(200px, 300px) 1fr;
   gap: clamp(24px, 4vw, 48px);
   align-items: center;
-  padding: 32px clamp(24px, 4vw, 48px);
+  padding: ${({ theme }) => theme.spacing[8]} clamp(24px, 4vw, 48px);
 
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
     justify-items: center;
     text-align: center;
-    padding: 32px 16px;
+    padding: ${({ theme }) => theme.spacing[8]} ${({ theme }) => theme.spacing[4]};
   }
 `;
 
 export const Visual = styled.div`
   position: relative;
-  border-radius: 12px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
+  box-shadow: ${({ theme }) => theme.shadows.xl};
   line-height: 0;
 
   &::after {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 12px;
+    border-radius: ${({ theme }) => theme.borderRadius.xl};
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 `;
@@ -123,22 +123,22 @@ export const Cover = styled.img`
   width: 100%;
   aspect-ratio: 2 / 3;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
 `;
 
 export const Placeholder = styled(Visual)`
   width: 100%;
   aspect-ratio: 2 / 3;
-  background: #232323;
+  background: ${({ theme }) => theme.colors.neutral[800]};
   display: grid;
   place-items: center;
-  color: #555;
+  color: ${({ theme }) => theme.colors.neutral[600]};
 `;
 
 export const Copy = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: ${({ theme }) => theme.spacing[4]};
   max-width: 600px;
 
   @media (max-width: 800px) {
@@ -148,19 +148,19 @@ export const Copy = styled.div`
 
 export const BadgeRow = styled.div`
   display: flex;
-  gap: 10px;
+  gap: ${({ theme }) => theme.spacing[2]};
   align-items: center;
   flex-wrap: wrap;
 `;
 
 export const Badge = styled.span`
-  background: #f97316; /* Orange brand color */
-  color: #fff;
-  font-size: 11px;
-  font-weight: 800;
+  background: ${({ theme }) => theme.colors.semantic.warning};
+  color: ${({ theme }) => theme.colors.text.inverse};
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   text-transform: uppercase;
-  padding: 4px 8px;
-  border-radius: 6px;
+  padding: ${({ theme }) => theme.spacing[1]} ${({ theme }) => theme.spacing[2]};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
   letter-spacing: 0.05em;
 
   &.rating {
@@ -169,39 +169,39 @@ export const Badge = styled.span`
     color: #fbbf24;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: ${({ theme }) => theme.spacing[1]};
   }
 `;
 
 export const Title = styled.h2`
   font-size: clamp(24px, 4vw, 48px);
-  font-weight: 800; /* Serif-like heavy weight */
-  line-height: 1.1;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  line-height: ${({ theme }) => theme.typography.lineHeight.tight};
   color: #fff;
   margin: 0;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  font-family: 'Times New Roman', serif; /* Or keep sans if preferred */
+  font-family: 'Times New Roman', serif;
 `;
 
 export const Sub = styled.div`
   display: flex;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing[2]};
   align-items: center;
-  color: #94a3b8;
-  font-size: 13px;
-  font-weight: 500;
+  color: ${({ theme }) => theme.colors.neutral[400]};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
   text-transform: uppercase;
   letter-spacing: 0.05em;
 
   span {
-    color: #cbd5e1;
+    color: ${({ theme }) => theme.colors.neutral[300]};
   }
 `;
 
 export const Description = styled.p`
   font-size: clamp(14px, 1.5vw, 16px);
-  line-height: 1.6;
-  color: #cbd5e1;
+  line-height: ${({ theme }) => theme.typography.lineHeight.relaxed};
+  color: ${({ theme }) => theme.colors.neutral[300]};
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -212,64 +212,69 @@ export const Description = styled.p`
 
 export const Actions = styled.div`
   display: flex;
-  gap: 16px;
-  margin-top: 8px;
+  gap: ${({ theme }) => theme.spacing[4]};
+  margin-top: ${({ theme }) => theme.spacing[2]};
 `;
 
 export const CTA = styled.div<{ primary?: boolean }>`
   height: 44px;
-  padding: 0 24px;
+  padding: 0 ${({ theme }) => theme.spacing[6]};
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 14px;
+  border-radius: ${({ theme }) => theme.borderRadius.full};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
   cursor: pointer;
+  transition: all ${({ theme }) => theme.transitions.fast};
 
-  ${({ primary }) =>
+  ${({ primary, theme }) =>
     primary
       ? `
-    background: #3b82f6; /* Blue */
+    background: ${theme.colors.primary[500]};
     color: #fff;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-    &:hover { background: #2563eb; }
+    box-shadow: 0 4px 12px ${theme.colors.primary[500]}66;
+    &:hover { 
+      background: ${theme.colors.primary[600]}; 
+      transform: translateY(-1px);
+    }
   `
       : `
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.15);
-    &:hover { background: rgba(255, 255, 255, 0.2); }
+    &:hover { 
+      background: rgba(255, 255, 255, 0.2); 
+      transform: translateY(-1px);
+    }
   `}
-
-  transition: all 0.2s ease;
 `;
 
 export const ProgressBar = styled.div`
   position: absolute;
-  bottom: 16px;
+  bottom: ${({ theme }) => theme.spacing[4]};
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 6px;
+  gap: ${({ theme }) => theme.spacing[2]};
   z-index: 10;
 `;
 
 export const Dot = styled.button`
   width: 6px;
   height: 6px;
-  border-radius: 50%;
+  border-radius: ${({ theme }) => theme.borderRadius.full};
   border: 0;
   background: rgba(255, 255, 255, 0.3);
   cursor: pointer;
   padding: 0;
-  transition: all 0.2s;
+  transition: all ${({ theme }) => theme.transitions.fast};
 
   &.active {
     width: 24px;
-    border-radius: 4px;
-    background: #3b82f6;
+    border-radius: ${({ theme }) => theme.borderRadius.sm};
+    background: ${({ theme }) => theme.colors.primary[500]};
   }
 `;
 
-export const Fill = styled.span``; // Unused in new dot style but kept for compat
+export const Fill = styled.span``;

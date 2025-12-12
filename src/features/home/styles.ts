@@ -1,19 +1,11 @@
 import styled from '@emotion/styled';
 
-/* styled */
 export const Page = styled.main`
-  --page-max: 1400px;
-  max-width: var(--page-max);
+  max-width: 1400px;
   margin: 0 auto;
-  padding: clamp(10px, 2.5vw, 16px) clamp(12px, 3vw, 16px)
-    clamp(24px, 4vw, 32px);
+  padding: clamp(10px, 2.5vw, 16px) clamp(12px, 3vw, 16px) clamp(24px, 4vw, 32px);
   max-width: 100vw;
   overflow-x: clip;
-
-  --line: #e5e7eb;
-  @media (prefers-color-scheme: dark) {
-    --line: #1f2937;
-  }
 `;
 
 export const ContentGrid = styled.div`

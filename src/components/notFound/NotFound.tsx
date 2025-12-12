@@ -2,23 +2,11 @@ import styled from '@emotion/styled';
 import { Link } from '@tanstack/react-router';
 
 const Wrap = styled.main`
-  --text: #111;
-  --muted: #6b7280;
-  --line: #e5e7eb;
-  --bg-hover: #f9fafb;
-
-  @media (prefers-color-scheme: dark) {
-    --text: #e5e7eb;
-    --muted: #9ca3af;
-    --line: #1f2937;
-    --bg-hover: #0b0f14;
-  }
-
   min-height: 60vh;
   display: grid;
   place-items: center;
   padding: clamp(16px, 3vw, 24px);
-  color: var(--text);
+  color: ${({ theme }) => theme.colors.text.primary};
 `;
 
 const Card = styled.div`
@@ -72,7 +60,7 @@ const Title = styled.h1`
 const Sub = styled.p`
   margin: 0;
   font-size: clamp(12px, 1.8vw, 14px);
-  color: var(--muted);
+  color: ${({ theme }) => theme.colors.text.secondary};
 `;
 
 const Actions = styled.div`
@@ -85,29 +73,34 @@ const Actions = styled.div`
 
 const Btn = styled.button`
   appearance: none;
-  border: 1px solid var(--line);
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
   background: transparent;
   color: inherit;
-  border-radius: 10px;
-  padding: 10px 14px;
-  font-weight: 600;
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[4]};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
   cursor: pointer;
+  transition: all ${({ theme }) => theme.transitions.fast};
+  box-shadow: none;
 
   &:hover {
-    background: var(--bg-hover);
+    background: ${({ theme }) => theme.colors.surface.cardHover};
+    transform: none;
+    box-shadow: none;
   }
 `;
 
 const LinkBtn = styled(Link)`
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 10px 14px;
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[4]};
   text-decoration: none;
   color: inherit;
-  font-weight: 600;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  transition: all ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    background: var(--bg-hover);
+    background: ${({ theme }) => theme.colors.surface.cardHover};
   }
 `;
 
