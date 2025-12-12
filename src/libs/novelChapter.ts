@@ -35,7 +35,7 @@ export const getChapter = async ({
 }: IGetChapter): Promise<TChapterPayload> => {
   try {
     const response: AxiosResponse<unknown, TChapterPayload> = await api.get(
-      '/api/novel/novlove/novel/' + slug,
+      '/api/novlove/novel/' + slug,
     );
 
     const result = ChapterPayload.safeParse(response.data);

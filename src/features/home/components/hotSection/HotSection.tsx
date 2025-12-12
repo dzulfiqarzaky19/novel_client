@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { useRef } from 'react';
 
-import { useHomeHot } from 'hooks/useHome';
+import { useHomeHot } from 'features/home/hooks/useHome';
 
 import {
   ArrowButton,

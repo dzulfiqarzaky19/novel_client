@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 
-import { useHomeGenres } from 'hooks/useHome';
+import { useHomeGenres } from 'features/home/hooks/useHome';
 
 import { List, Row, Section, SectionHeader, Title } from './styles';
 

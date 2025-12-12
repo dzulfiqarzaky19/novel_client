@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 
-import { useHomeSorts } from 'hooks/useHome';
+import { useHomeSorts } from 'features/home/hooks/useHome';
 
 import { List, Row, Section, SectionHeader, Title } from './styles';
 

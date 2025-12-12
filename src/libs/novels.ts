@@ -67,7 +67,7 @@ export type THomePayload = z.infer<typeof HomePayload>;
 export const getHome = async (): Promise<THomePayload> => {
   try {
     const response: AxiosResponse<unknown, THomePayload> =
-      await api.get('/api/novel/novlove');
+      await api.get('/api/novlove');
 
     const result = HomePayload.safeParse(response.data);
 

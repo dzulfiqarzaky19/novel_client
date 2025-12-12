@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { useHomeCompleted } from 'hooks/useHome';
+import { useHomeCompleted } from 'features/home/hooks/useHome';
 
 import {
   Actions,

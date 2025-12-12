@@ -34,7 +34,7 @@ interface IGetList {
 export const getList = async ({ slug }: IGetList): Promise<TListPayload> => {
   try {
     const response: AxiosResponse<unknown, TListPayload> = await api.get(
-      '/api/novel/novlove/' + slug,
+      '/api/novlove/' + slug,
     );
 
     const result = ListPayload.safeParse(response.data);

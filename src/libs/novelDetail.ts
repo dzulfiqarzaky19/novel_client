@@ -107,7 +107,7 @@ export const getDetail = async ({
 }: IGetDetail): Promise<TDetailPayload> => {
   try {
     const response: AxiosResponse<unknown, TDetailPayload> = await api.get(
-      '/api/novel/novlove/novel/' + slug,
+      '/api/novlove/novel/' + slug,
     );
 
     const result = DetailPayload.safeParse(response.data);

@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 
-import { useHomeLatest } from 'hooks/useHome';
+import { useHomeLatest } from 'features/home/hooks/useHome';
 
 import {
   Col,
