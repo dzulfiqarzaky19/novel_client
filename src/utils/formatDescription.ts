@@ -1,4 +1,3 @@
-// utils/descriptionFormatter.ts
 const NON_TERM = new Set([
   'mr.',
   'mrs.',

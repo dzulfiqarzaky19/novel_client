@@ -7,10 +7,8 @@ import {
 } from 'react';
 import { ThemeProvider } from '@emotion/react';
 
-// Theme Type Definitions
 export interface Theme {
   colors: {
-    // Primary brand colors
     primary: {
       50: string;
       100: string;
@@ -23,7 +21,6 @@ export interface Theme {
       800: string;
       900: string;
     };
-    // Neutral colors
     neutral: {
       50: string;
       100: string;
@@ -37,14 +34,12 @@ export interface Theme {
       900: string;
       950: string;
     };
-    // Semantic colors
     semantic: {
       success: string;
       warning: string;
       error: string;
       info: string;
     };
-    // Surface colors
     surface: {
       background: string;
       foreground: string;
@@ -53,7 +48,6 @@ export interface Theme {
       overlay: string;
       elevated: string;
     };
-    // Text colors
     text: {
       primary: string;
       secondary: string;
@@ -62,14 +56,12 @@ export interface Theme {
       link: string;
       linkHover: string;
     };
-    // Border colors
     border: {
       default: string;
       light: string;
       strong: string;
       focus: string;
     };
-    // Component colors
     component: {
       buttonPrimary: string;
       buttonPrimaryHover: string;
@@ -157,7 +149,6 @@ export interface Theme {
   };
 }
 
-// Light Theme
 export const lightTheme: Theme = {
   colors: {
     primary: {
@@ -301,7 +292,6 @@ export const lightTheme: Theme = {
   },
 };
 
-// Dark Theme
 export const darkTheme: Theme = {
   colors: {
     primary: {
@@ -445,7 +435,6 @@ export const darkTheme: Theme = {
   },
 };
 
-// Theme Context
 type ThemeMode = 'light' | 'dark';
 
 interface ThemeContextProps {
@@ -458,7 +447,6 @@ const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
 const THEME_STORAGE_KEY = 'novel-app-theme';
 
-// Get initial theme from localStorage or system preference
 const getInitialTheme = (): ThemeMode => {
   if (typeof window === 'undefined') return 'dark';
 
@@ -469,7 +457,6 @@ const getInitialTheme = (): ThemeMode => {
     return storedTheme;
   }
 
-  // Fallback to system preference
   if (
     window.matchMedia &&
     window.matchMedia('(prefers-color-scheme: light)').matches
@@ -498,7 +485,6 @@ export const ThemeProviderContext = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  // Sync with localStorage on mount
   useEffect(() => {
     const initialTheme = getInitialTheme();
     setMode(initialTheme);

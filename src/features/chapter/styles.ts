@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-// Page Layout
 export const Page = styled.div`
   background: ${({ theme }) => theme.colors.surface.background};
   color: ${({ theme }) => theme.colors.text.primary};
@@ -17,7 +16,6 @@ export const Container = styled.div`
   padding: 0 ${({ theme }) => theme.spacing[4]};
 `;
 
-// Header Styles
 export const HeaderWrapper = styled.header`
   position: sticky;
   top: 0;
@@ -121,7 +119,6 @@ export const NextButton = styled.button`
   }
 `;
 
-// Content Styles
 export const ContentWrapper = styled.main`
   flex: 1;
   padding: ${({ theme }) => theme.spacing[8]} 0;
@@ -169,7 +166,6 @@ export const ContentArea = styled.article`
   }
 `;
 
-// Footer Styles
 export const FooterWrapper = styled.footer`
   border-top: 1px solid ${({ theme }) => theme.colors.border.default};
   background: ${({ theme }) => theme.colors.surface.background};

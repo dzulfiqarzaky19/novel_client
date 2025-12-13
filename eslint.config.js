@@ -62,7 +62,7 @@ export default [
             'src/assets/**',
             'src/components/**',
             'src/hooks/**',
-            'src/libs/**',
+            'src/lib/**',
             'src/utils/**',
           ],
         },
