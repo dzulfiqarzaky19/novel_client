@@ -22,24 +22,34 @@ export const SectionHeader = styled.h2`
   letter-spacing: -0.01em;
 `;
 
-export const ViewAll = styled.a`
+export const ViewAll = styled.button`
   font-size: ${({ theme }) => theme.typography.fontSize.sm};
   font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
   color: ${({ theme }) => theme.colors.primary[500]};
-  text-decoration: none;
   cursor: pointer;
   transition: color ${({ theme }) => theme.transitions.fast};
+  background: transparent;
+  border: none;
 
   &:hover {
     color: ${({ theme }) => theme.colors.primary[600]};
-    text-decoration: underline;
+    background: ${({ theme }) => theme.colors.surface.cardHover};
   }
 `;
 
 export const List = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-auto-rows: minmax(72px, auto);
   gap: ${({ theme }) => theme.spacing[3]};
+  overflow-y: auto;
+
+  max-height: calc(12 * 72px + 11 * ${({ theme }) => theme.spacing[3]});
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 export const Row = styled.div`
@@ -117,4 +127,28 @@ export const NewBadge = styled.span`
   background: ${({ theme }) => theme.colors.semantic.success}1a;
   padding: ${({ theme }) => theme.spacing[1]} ${({ theme }) => theme.spacing[2]};
   border-radius: ${({ theme }) => theme.borderRadius.sm};
+`;
+
+export const LoadmoreButton = styled.button`
+  width: 100%;
+  margin-top: ${({ theme }) => theme.spacing[4]};
+  padding: ${({ theme }) => theme.spacing[3]} ${({ theme }) => theme.spacing[4]};
+  background: ${({ theme }) => theme.colors.surface.elevated};
+  color: ${({ theme }) => theme.colors.text.primary};
+  border: 1px solid ${({ theme }) => theme.colors.border.default};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  cursor: pointer;
+  transition: all ${({ theme }) => theme.transitions.fast};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.surface.cardHover};
+    border-color: ${({ theme }) => theme.colors.border.strong};
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 `;

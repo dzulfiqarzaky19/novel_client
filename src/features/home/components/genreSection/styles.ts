@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 export const Section = styled.section`
-  margin: 0;
   background: ${({ theme }) => theme.colors.surface.card};
   border-radius: ${({ theme }) => theme.borderRadius.xl};
   padding: ${({ theme }) => theme.spacing[5]};
@@ -23,6 +22,16 @@ export const List = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing[1]};
+
+  max-height: 60vh;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 export const Row = styled.div`

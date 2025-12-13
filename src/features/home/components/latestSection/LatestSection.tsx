@@ -7,6 +7,7 @@ import {
   HeaderRow,
   IconPlaceholder,
   List,
+  LoadmoreButton,
   NewBadge,
   Row,
   Section,
@@ -16,9 +17,13 @@ import {
   Title,
   ViewAll,
 } from './styles';
+import { useState } from 'react';
 
 export const LatestSection = () => {
   const { data } = useHomeLatest();
+  const [seeAll, setSeeAll] = useState(false);
+
+  const showData = seeAll ? data : data.slice(0, 11);
 
   return (
     <Section>
@@ -28,7 +33,7 @@ export const LatestSection = () => {
       </HeaderRow>
 
       <List role="list">
-        {data
+        {showData
           .filter((i) => i.title)
           .map((n) => (
             <Link
@@ -56,7 +61,9 @@ export const LatestSection = () => {
           ))}
       </List>
 
-      {/* Optional: Load More Button */}
+      {!seeAll && (
+        <LoadmoreButton onClick={() => setSeeAll(true)}>See All</LoadmoreButton>
+      )}
     </Section>
   );
 };
