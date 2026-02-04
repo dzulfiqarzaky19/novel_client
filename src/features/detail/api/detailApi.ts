@@ -1,8 +1,7 @@
 import z from 'zod';
 
-import { logZodError } from 'utils/logZodError';
-
 import { api } from 'lib/api';
+import { logZodError } from 'utils/logZodError';
 
 import type { AxiosResponse } from 'axios';
 
@@ -107,7 +106,7 @@ export const getDetail = async ({
 }: IGetDetail): Promise<TDetailPayload> => {
   try {
     const response: AxiosResponse<unknown, TDetailPayload> = await api.get(
-      '/api/novlove/novel/' + slug,
+      '/api/novel/novlove/novel/' + slug,
     );
 
     const result = DetailPayload.safeParse(response.data);
@@ -116,8 +115,7 @@ export const getDetail = async ({
       logZodError(result.error.issues);
 
       throw new Error(
-        `Invalid API Response: ${result.error.issues[0].path.join('.')} - ${
-          result.error.issues[0].message
+        `Invalid API Response: ${result.error.issues[0].path.join('.')} - ${result.error.issues[0].message
         }`,
       );
     }

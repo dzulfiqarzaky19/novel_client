@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
+import { api } from 'lib/api';
 import { logZodError } from 'utils/logZodError';
 
 import type { AxiosResponse } from 'axios';
-import { api } from 'lib/api';
 
 const hot = z.object({
   title: z.string(),
