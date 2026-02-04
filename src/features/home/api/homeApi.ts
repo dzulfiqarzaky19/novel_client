@@ -62,7 +62,7 @@ export const HomePayload = z.object({
 
 export type THomePayload = z.infer<typeof HomePayload>;
 
-export const HOME_API = '/api/novlove';
+export const HOME_API = '/api/novel/novlove';
 
 export const getHome = async (): Promise<THomePayload> => {
   try {
@@ -75,8 +75,7 @@ export const getHome = async (): Promise<THomePayload> => {
       logZodError(result.error.issues);
 
       throw new Error(
-        `Invalid API Response: ${result.error.issues[0].path.join('.')} - ${
-          result.error.issues[0].message
+        `Invalid API Response: ${result.error.issues[0].path.join('.')} - ${result.error.issues[0].message
         }`,
       );
     }
