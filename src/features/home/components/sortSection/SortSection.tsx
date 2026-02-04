@@ -6,10 +6,12 @@ import { Icon, List, Row, Section, SectionHeader, Title } from './styles';
 
 const getIcon = (text: string) => {
   const t = text.toLowerCase();
+
   if (t.includes('latest')) return '🆕';
   if (t.includes('hot')) return '🔥';
   if (t.includes('completed')) return '✅';
   if (t.includes('popular')) return '📈';
+
   return '🔗';
 };
 
@@ -35,6 +37,7 @@ export const SortSection = () => {
             >
               <Row>
                 <Icon>{getIcon(n.text)}</Icon>
+
                 <Title>{n.text}</Title>
               </Row>
             </Link>

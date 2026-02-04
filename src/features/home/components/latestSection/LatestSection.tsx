@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router';
+import { useState } from 'react';
 
 import { useHomeLatest } from 'features/home/hooks/useHome';
 
@@ -17,7 +18,6 @@ import {
   Title,
   ViewAll,
 } from './styles';
-import { useState } from 'react';
 
 export const LatestSection = () => {
   const { data } = useHomeLatest();
@@ -29,6 +29,7 @@ export const LatestSection = () => {
     <Section>
       <HeaderRow>
         <SectionHeader>Latest Updates</SectionHeader>
+
         <ViewAll>View All</ViewAll>
       </HeaderRow>
 
@@ -51,6 +52,7 @@ export const LatestSection = () => {
 
                   <Sub title={n.latestChapter.title}>
                     {n.latestChapter.title}
+
                     {n.isNew && <NewBadge>NEW</NewBadge>}
                   </Sub>
                 </Col>

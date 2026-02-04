@@ -76,6 +76,7 @@ export const CompletedSection = ({
     };
 
     const id = setInterval(tick, intervalMs);
+
     return () => clearInterval(id);
   }, [slides.length, intervalMs]);
 
@@ -111,6 +112,7 @@ export const CompletedSection = ({
           <Copy>
             <BadgeRow>
               <Badge>FEATURED</Badge>
+
               <Badge className="rating">★ 4.8</Badge>
             </BadgeRow>
 
@@ -134,6 +136,7 @@ export const CompletedSection = ({
               >
                 <CTA primary>{ctaLabel}</CTA>
               </Link>
+
               <CTA>+ Add to Library</CTA>
             </Actions>
           </Copy>
