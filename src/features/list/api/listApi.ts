@@ -34,7 +34,7 @@ interface IGetList {
 export const getList = async ({ slug }: IGetList): Promise<TListPayload> => {
   try {
     const response: AxiosResponse<unknown, TListPayload> = await api.get(
-      '/api/novlove/' + slug,
+      '/api/novel/novlove/' + slug,
     );
 
     const result = ListPayload.safeParse(response.data);
@@ -43,8 +43,7 @@ export const getList = async ({ slug }: IGetList): Promise<TListPayload> => {
       logZodError(result.error.issues);
 
       throw new Error(
-        `Invalid API Response: ${result.error.issues[0].path.join('.')} - ${
-          result.error.issues[0].message
+        `Invalid API Response: ${result.error.issues[0].path.join('.')} - ${result.error.issues[0].message
         }`,
       );
     }
