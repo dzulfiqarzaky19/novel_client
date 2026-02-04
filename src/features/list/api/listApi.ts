@@ -1,8 +1,7 @@
 import z from 'zod';
 
-import { logZodError } from 'utils/logZodError';
-
 import { api } from 'lib/api';
+import { logZodError } from 'utils/logZodError';
 
 import type { AxiosResponse } from 'axios';
 
