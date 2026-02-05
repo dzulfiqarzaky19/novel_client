@@ -14,7 +14,7 @@ export const Section = styled.section<{ bg?: string | null }>`
     position: absolute;
     inset: 0;
     background: ${({ bg }) =>
-      bg ? `url(${bg}) center top / cover no-repeat` : 'none'};
+    bg ? `url(${bg}) center top / cover no-repeat` : 'none'};
     filter: blur(60px) brightness(0.4) saturate(1.2);
     transform: scale(1.1);
     z-index: 0;
@@ -41,6 +41,7 @@ export const Frame = styled.div`
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  margin-bottom: ${({ theme }) => theme.spacing[6]};
   min-height: clamp(360px, 45vw, 480px);
   display: flex;
   align-items: center;
@@ -196,7 +197,7 @@ export const Sub = styled.div`
   letter-spacing: 0.05em;
 
   span {
-    color: ${({ theme }) => theme.colors.neutral[300]};
+    color: ${({ theme }) => theme.colors.neutral[900]};
   }
 `;
 

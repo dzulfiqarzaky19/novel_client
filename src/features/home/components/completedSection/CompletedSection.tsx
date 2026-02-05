@@ -11,7 +11,6 @@ import {
   Copy,
   Cover,
   CTA,
-  Description,
   Dot,
   Frame,
   Ghost,
@@ -119,15 +118,8 @@ export const CompletedSection = ({
             <Title title={active.title}>{active.title}</Title>
 
             <Sub>
-              <span>Action • Martial Arts • {active.subtitle}</span>
+              <span>{active.subtitle}</span>
             </Sub>
-
-            <Description>
-              In a world where strength determines destiny, a young man rises
-              from the ashes of betrayal. With the blood of the ancient Dragon
-              Emperor flowing through his veins, he challenges the heavens and
-              crushes all who stand in his way.
-            </Description>
 
             <Actions>
               <Link
