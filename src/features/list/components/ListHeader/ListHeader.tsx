@@ -4,7 +4,6 @@ interface IListHeaderProps {
   title: string;
 }
 
-
 export const ListHeader = ({ title }: IListHeaderProps) => {
   return (
     <HeaderContainer>
@@ -12,7 +11,9 @@ export const ListHeader = ({ title }: IListHeaderProps) => {
 
       <Select defaultValue="updated">
         <option value="updated">Recently Updated</option>
+
         <option value="new">Newest</option>
+
         <option value="popular">Most Popular</option>
       </Select>
     </HeaderContainer>

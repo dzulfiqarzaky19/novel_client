@@ -14,7 +14,7 @@ export const Section = styled.section<{ bg?: string | null }>`
     position: absolute;
     inset: 0;
     background: ${({ bg }) =>
-    bg ? `url(${bg}) center top / cover no-repeat` : 'none'};
+      bg ? `url(${bg}) center top / cover no-repeat` : 'none'};
     filter: blur(60px) brightness(0.4) saturate(1.2);
     transform: scale(1.1);
     z-index: 0;

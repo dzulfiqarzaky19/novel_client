@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@emotion/react';
 import {
   createContext,
   useContext,
@@ -5,7 +6,6 @@ import {
   useEffect,
   type ReactNode,
 } from 'react';
-import { ThemeProvider } from '@emotion/react';
 
 export interface Theme {
   colors: {
@@ -453,6 +453,7 @@ const getInitialTheme = (): ThemeMode => {
   const storedTheme = localStorage.getItem(
     THEME_STORAGE_KEY,
   ) as ThemeMode | null;
+
   if (storedTheme === 'light' || storedTheme === 'dark') {
     return storedTheme;
   }
@@ -469,8 +470,10 @@ const getInitialTheme = (): ThemeMode => {
 
 export const useThemeContext = () => {
   const ctx = useContext(ThemeContext);
+
   if (!ctx)
     throw new Error('useThemeContext must be used within ThemeProviderContext');
+
   return ctx;
 };
 
@@ -480,13 +483,16 @@ export const ThemeProviderContext = ({ children }: { children: ReactNode }) => {
   const toggleTheme = () => {
     setMode((prev) => {
       const newMode = prev === 'dark' ? 'light' : 'dark';
+
       localStorage.setItem(THEME_STORAGE_KEY, newMode);
+
       return newMode;
     });
   };
 
   useEffect(() => {
     const initialTheme = getInitialTheme();
+
     setMode(initialTheme);
   }, []);
 

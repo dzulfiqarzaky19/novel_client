@@ -27,6 +27,5 @@ export const routerMock = async (importOriginal: <T>() => Promise<T>) => {
     getRouteApi: () => ({
       Link: MockLink,
     }),
-    useMatchRoute: () => () => false,
   };
 };
